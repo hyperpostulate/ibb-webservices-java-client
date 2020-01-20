@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
  * generated in the org.mesutormanli.ibbwsclient.iett.ibb package. 
- * <p>An ObjectFactory allows you to programatically 
+ * &lt;p&gt;An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
  * content can consist of schema derived interfaces 
@@ -30,19 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OHOPlakaServisiOTSResponse }
+     * Create an instance of {@link DurakDetayGYYResponse }
      * 
      */
-    public OHOPlakaServisiOTSResponse createOHOPlakaServisiOTSResponse() {
-        return new OHOPlakaServisiOTSResponse();
-    }
-
-    /**
-     * Create an instance of {@link IETTPlakaServisiResponse }
-     * 
-     */
-    public IETTPlakaServisiResponse createIETTPlakaServisiResponse() {
-        return new IETTPlakaServisiResponse();
+    public DurakDetayGYYResponse createDurakDetayGYYResponse() {
+        return new DurakDetayGYYResponse();
     }
 
     /**
@@ -54,43 +46,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DurakDetayGYYResponse }
+     * Create an instance of {@link IETTPlakaServisiResponse }
      * 
      */
-    public DurakDetayGYYResponse createDurakDetayGYYResponse() {
-        return new DurakDetayGYYResponse();
+    public IETTPlakaServisiResponse createIETTPlakaServisiResponse() {
+        return new IETTPlakaServisiResponse();
     }
 
     /**
-     * Create an instance of {@link IETTPlakaServisi }
+     * Create an instance of {@link OHOPlakaServisiOTSResponse }
      * 
      */
-    public IETTPlakaServisi createIETTPlakaServisi() {
-        return new IETTPlakaServisi();
-    }
-
-    /**
-     * Create an instance of {@link OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult }
-     * 
-     */
-    public OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult createOHOPlakaServisiOTSResponseOHOPlakaServisiOTSResult() {
-        return new OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult();
-    }
-
-    /**
-     * Create an instance of {@link IETTPlakaServisiResponse.IETTPlakaServisiResult }
-     * 
-     */
-    public IETTPlakaServisiResponse.IETTPlakaServisiResult createIETTPlakaServisiResponseIETTPlakaServisiResult() {
-        return new IETTPlakaServisiResponse.IETTPlakaServisiResult();
-    }
-
-    /**
-     * Create an instance of {@link HatServisiGYYResponse.HatServisiGYYResult }
-     * 
-     */
-    public HatServisiGYYResponse.HatServisiGYYResult createHatServisiGYYResponseHatServisiGYYResult() {
-        return new HatServisiGYYResponse.HatServisiGYYResult();
+    public OHOPlakaServisiOTSResponse createOHOPlakaServisiOTSResponse() {
+        return new OHOPlakaServisiOTSResponse();
     }
 
     /**
@@ -118,11 +86,43 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link HatServisiGYYResponse.HatServisiGYYResult }
+     * 
+     */
+    public HatServisiGYYResponse.HatServisiGYYResult createHatServisiGYYResponseHatServisiGYYResult() {
+        return new HatServisiGYYResponse.HatServisiGYYResult();
+    }
+
+    /**
+     * Create an instance of {@link IETTPlakaServisi }
+     * 
+     */
+    public IETTPlakaServisi createIETTPlakaServisi() {
+        return new IETTPlakaServisi();
+    }
+
+    /**
+     * Create an instance of {@link IETTPlakaServisiResponse.IETTPlakaServisiResult }
+     * 
+     */
+    public IETTPlakaServisiResponse.IETTPlakaServisiResult createIETTPlakaServisiResponseIETTPlakaServisiResult() {
+        return new IETTPlakaServisiResponse.IETTPlakaServisiResult();
+    }
+
+    /**
      * Create an instance of {@link OHOPlakaServisiOTS }
      * 
      */
     public OHOPlakaServisiOTS createOHOPlakaServisiOTS() {
         return new OHOPlakaServisiOTS();
+    }
+
+    /**
+     * Create an instance of {@link OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult }
+     * 
+     */
+    public OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult createOHOPlakaServisiOTSResponseOHOPlakaServisiOTSResult() {
+        return new OHOPlakaServisiOTSResponse.OHOPlakaServisiOTSResult();
     }
 
 }

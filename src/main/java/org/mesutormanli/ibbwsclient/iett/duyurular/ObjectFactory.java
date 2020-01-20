@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
  * generated in the org.mesutormanli.ibbwsclient.iett.duyurular package. 
- * <p>An ObjectFactory allows you to programatically 
+ * &lt;p&gt;An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
  * content can consist of schema derived interfaces 
@@ -46,19 +46,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetDuyurularJson }
-     * 
-     */
-    public GetDuyurularJson createGetDuyurularJson() {
-        return new GetDuyurularJson();
-    }
-
-    /**
      * Create an instance of {@link GetDuyurularXMLResponse.GetDuyurularXMLResult }
      * 
      */
     public GetDuyurularXMLResponse.GetDuyurularXMLResult createGetDuyurularXMLResponseGetDuyurularXMLResult() {
         return new GetDuyurularXMLResponse.GetDuyurularXMLResult();
+    }
+
+    /**
+     * Create an instance of {@link GetDuyurularJson }
+     * 
+     */
+    public GetDuyurularJson createGetDuyurularJson() {
+        return new GetDuyurularJson();
     }
 
     /**
