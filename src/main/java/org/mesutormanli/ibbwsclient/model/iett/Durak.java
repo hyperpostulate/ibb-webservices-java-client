@@ -1,8 +1,9 @@
 package org.mesutormanli.ibbwsclient.model.iett;
 
 import com.google.gson.annotations.SerializedName;
+import org.mesutormanli.ibbwsclient.model.base.BaseDataModel;
 
-public class Durak {
+public class Durak extends BaseDataModel {
 
     @SerializedName("SDURAKKODU")
     private String durakKodu;

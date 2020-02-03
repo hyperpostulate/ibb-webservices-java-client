@@ -1,10 +1,11 @@
 package org.mesutormanli.ibbwsclient.model.iett;
 
 import com.google.gson.annotations.SerializedName;
+import org.mesutormanli.ibbwsclient.model.base.BaseDataModel;
 
 import java.util.Objects;
 
-public class Garaj {
+public class Garaj extends BaseDataModel {
 
     @SerializedName("ID")
     private String id;

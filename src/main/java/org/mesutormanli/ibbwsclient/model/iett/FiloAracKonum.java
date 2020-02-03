@@ -1,10 +1,11 @@
 package org.mesutormanli.ibbwsclient.model.iett;
 
 import com.google.gson.annotations.SerializedName;
+import org.mesutormanli.ibbwsclient.model.base.BaseDataModel;
 
 import java.util.Objects;
 
-public class FiloAracKonum {
+public class FiloAracKonum extends BaseDataModel {
 
     @SerializedName("Operator")
     private String operator;

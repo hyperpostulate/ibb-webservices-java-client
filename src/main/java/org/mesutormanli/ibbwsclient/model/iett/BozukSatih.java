@@ -1,8 +1,9 @@
 package org.mesutormanli.ibbwsclient.model.iett;
 
 import com.google.gson.annotations.SerializedName;
+import org.mesutormanli.ibbwsclient.model.base.BaseDataModel;
 
-public class BozukSatih {
+public class BozukSatih extends BaseDataModel {
 
     @SerializedName("NMESAJID")
     private String mesajId;

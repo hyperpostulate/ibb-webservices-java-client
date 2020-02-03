@@ -1,40 +1,44 @@
 package org.mesutormanli.ibbwsclient.service.iett;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.iett.BozukSatih;
 import org.mesutormanli.ibbwsclient.model.iett.FiloAracKonum;
 import org.mesutormanli.ibbwsclient.model.iett.KazaLokasyon;
+import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
 import java.util.List;
 
-class SeferGerceklesmeServiceTest {
+class SeferGerceklesmeServiceTest extends BaseServiceTest {
+
+    private SeferGerceklesmeService seferGerceklesmeService;
+
+    @BeforeEach
+    void setUp() {
+        seferGerceklesmeService = new SeferGerceklesmeService();
+    }
 
     @Test
     void getBozukSatih() {
-        SeferGerceklesmeService seferGerceklesmeService = new SeferGerceklesmeService();
         final List<BozukSatih> bozukSatihlar = seferGerceklesmeService.getBozukSatih(15);
-        bozukSatihlar.forEach(System.out::println);
+        printResult(bozukSatihlar);
     }
 
     @Test
     void getFiloAracKonum() {
-        SeferGerceklesmeService seferGerceklesmeService = new SeferGerceklesmeService();
         final List<FiloAracKonum> filoAracKonumlar = seferGerceklesmeService.getFiloAracKonum();
-        filoAracKonumlar.forEach(System.out::println);
+        printResult(filoAracKonumlar);
     }
 
     @Test
     void getKazaLokasyon() {
-        SeferGerceklesmeService seferGerceklesmeService = new SeferGerceklesmeService();
         final List<KazaLokasyon> kazaLokasyonlar = seferGerceklesmeService.getKazaLokasyon("2020-02-02");
-
-        kazaLokasyonlar.forEach(System.out::println);
+        printResult(kazaLokasyonlar);
     }
 
     @Test
     void getFiloAracKonumWithPlaka() {
-        SeferGerceklesmeService seferGerceklesmeService = new SeferGerceklesmeService();
         final List<FiloAracKonum> filoAracKonumlar = seferGerceklesmeService.getFiloAracKonum("34 NL 8220");
-        filoAracKonumlar.forEach(System.out::println);
+        printResult(filoAracKonumlar);
     }
 }

@@ -1,26 +1,30 @@
 package org.mesutormanli.ibbwsclient.service.iett;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.iett.Duyuru;
+import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
 import java.util.List;
 
-class DuyurularServiceTest {
+class DuyurularServiceTest extends BaseServiceTest {
+
+    private DuyurularService duyurularService;
+
+    @BeforeEach
+    void setUp() {
+        duyurularService = new DuyurularService();
+    }
 
     @Test
     void getDuyurular() {
-        DuyurularService duyurularService = new DuyurularService();
         final List<Duyuru> duyurular = duyurularService.getDuyurular();
-
-        duyurular.forEach(System.out::println);
-
+        printResult(duyurular);
     }
 
     @Test
     void getDuyurularWithHat() {
-        DuyurularService duyurularService = new DuyurularService();
         final List<Duyuru> duyurular = duyurularService.getDuyurular("HT48");
-
-        duyurular.forEach(System.out::println);
+        printResult(duyurular);
     }
 }
