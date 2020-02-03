@@ -1,14 +1,18 @@
 package org.mesutormanli.ibbwsclient.service.iett;
 
 import org.junit.jupiter.api.Test;
+import org.mesutormanli.ibbwsclient.model.iett.Duyuru;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 class DuyurularServiceTest {
 
     @Test
     void getDuyurular() {
         DuyurularService duyurularService = new DuyurularService();
-        System.out.println(duyurularService.getDuyurular());
+        final List<Duyuru> duyurular = duyurularService.getDuyurular();
+
+        duyurular.forEach(System.out::println);
+
     }
 }
