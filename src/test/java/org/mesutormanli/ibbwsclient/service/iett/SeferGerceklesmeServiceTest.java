@@ -30,4 +30,11 @@ class SeferGerceklesmeServiceTest {
 
         kazaLokasyonlar.forEach(System.out::println);
     }
+
+    @Test
+    void getFiloAracKonumWithPlaka() {
+        SeferGerceklesmeService seferGerceklesmeService = new SeferGerceklesmeService();
+        final List<FiloAracKonum> filoAracKonumlar = seferGerceklesmeService.getFiloAracKonum("34 NL 8220");
+        filoAracKonumlar.forEach(System.out::println);
+    }
 }

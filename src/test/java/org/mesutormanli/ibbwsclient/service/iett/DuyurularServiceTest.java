@@ -15,4 +15,12 @@ class DuyurularServiceTest {
         duyurular.forEach(System.out::println);
 
     }
+
+    @Test
+    void getDuyurularWithHat() {
+        DuyurularService duyurularService = new DuyurularService();
+        final List<Duyuru> duyurular = duyurularService.getDuyurular("HT48");
+
+        duyurular.forEach(System.out::println);
+    }
 }
