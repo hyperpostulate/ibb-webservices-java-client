@@ -1,0 +1,275 @@
+<wsdl:definitions xmlns="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                  targetNamespace="http://tempuri.org/">
+            <s:element name="GetPlanlananSeferSaati_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="AuthHeader" type="tns:AuthHeader"/>
+            <s:complexType name="AuthHeader">
+                <s:sequence>
+                    <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+                    <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+                </s:sequence>
+                <s:anyAttribute/>
+            </s:complexType>
+            <s:element name="GetPlanlananSeferSaati_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_jsonResult"
+                                   type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaatiAraDurak_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="DurakKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaatiAraDurak_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaatiAraDurak_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaatiAraDurak_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="DurakKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaatiAraDurak_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaatiAraDurak_jsonResult"
+                                   type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekans_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekans_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekans_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekans_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekans_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekans_jsonResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekansIlkSonSefer_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekansIlkSonSefer_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekansIlkSonSefer_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekansIlkSonSefer_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetMetobusFrekansIlkSonSefer_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekansIlkSonSefer_jsonResult"
+                                   type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_IGA_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_IGA_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_IGA_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_IGA_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPlanlananSeferSaati_IGA_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_IGA_jsonResult"
+                                   type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDurakGecisZaman_IGA_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDurakGecisZaman_IGA_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetDurakGecisZaman_IGA_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDurakGecisZaman_IGA_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="HatKodu" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetDurakGecisZaman_IGA_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetDurakGecisZaman_IGA_jsonResult"
+                                   type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="GetPlanlananSeferSaati_jsonSoapIn">
+        <wsdl:part element="tns:GetPlanlananSeferSaati_json" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetPlanlananSeferSaati_XMLSoapOut">
+        <wsdl:part element="tns:GetPlanlananSeferSaati_XMLResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetPlanlananSeferSaati_XMLSoapIn">
+        <wsdl:part element="tns:GetPlanlananSeferSaati_XML" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetPlanlananSeferSaati_jsonSoapOut">
+        <wsdl:part element="tns:GetPlanlananSeferSaati_jsonResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="PlanlananSeferSaatiSoap">
+        <wsdl:operation name="GetPlanlananSeferSaati_XML">
+            <wsdl:input message="tns:GetPlanlananSeferSaati_XMLSoapIn"></wsdl:input>
+            <wsdl:output message="tns:GetPlanlananSeferSaati_XMLSoapOut"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPlanlananSeferSaati_json">
+            <wsdl:input message="tns:GetPlanlananSeferSaati_jsonSoapIn"></wsdl:input>
+            <wsdl:output message="tns:GetPlanlananSeferSaati_jsonSoapOut"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PlanlananSeferSaatiSoap" type="tns:PlanlananSeferSaatiSoap">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetPlanlananSeferSaati_XML">
+            <soap:operation soapAction="http://tempuri.org/GetPlanlananSeferSaati_XML" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPlanlananSeferSaati_json">
+            <soap:operation soapAction="http://tempuri.org/GetPlanlananSeferSaati_json" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PlanlananSeferSaati">
+        <wsdl:port binding="tns:PlanlananSeferSaatiSoap" name="PlanlananSeferSaatiSoap">
+            <soap:address location="https://api.ibb.gov.tr/iett/UlasimAnaVeri/PlanlananSeferSaati.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
