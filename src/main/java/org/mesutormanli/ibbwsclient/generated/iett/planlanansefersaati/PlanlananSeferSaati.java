@@ -30,7 +30,7 @@ public class PlanlananSeferSaati
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/mormanli/PersonalProjects/ibb-webservices-java-client/src/main/java/org/mesutormanli/ibbwsclient/generated/iett/planlanansefersaati/PlanlananSeferSaati.wsdl");
+            url = new URL("https://api.ibb.gov.tr/iett/UlasimAnaVeri/PlanlananSeferSaati.asmx?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
