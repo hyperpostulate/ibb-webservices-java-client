@@ -1,6 +1,5 @@
 package org.mesutormanli.ibbwsclient.service;
 
-import com.google.gson.Gson;
 import kong.unirest.Unirest;
 import org.mesutormanli.ibbwsclient.model.ispark.Park;
 import org.mesutormanli.ibbwsclient.model.ispark.ParkDetay;
@@ -16,7 +15,7 @@ public class IsparkService extends BaseService {
     public List<Park> getPark() {
         final String json = Unirest.get(PARK_SERVICE_URL)
                 .asString().getBody();
-        return Arrays.asList(new Gson().fromJson(json, Park[].class));
+        return Arrays.asList(gson.fromJson(json, Park[].class));
 
     }
 
@@ -25,7 +24,7 @@ public class IsparkService extends BaseService {
                 .queryString("id", parkId)
                 .asString().getBody();
 
-        return new Gson().fromJson(json, ParkDetay.class);
+        return gson.fromJson(json, ParkDetay.class);
 
     }
 }
