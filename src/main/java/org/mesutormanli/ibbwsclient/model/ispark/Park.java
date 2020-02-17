@@ -6,8 +6,9 @@ import org.mesutormanli.ibbwsclient.model.base.BaseDataModel;
 import java.util.Objects;
 
 public class Park extends BaseDataModel {
+
     @SerializedName("ParkID")
-    private String parkId;
+    private Integer parkId;
 
     @SerializedName("ParkAdi")
     private String parkAdi;
@@ -19,10 +20,10 @@ public class Park extends BaseDataModel {
     private String longitude;
 
     @SerializedName("Kapasitesi")
-    private String kapasite;
+    private Integer kapasite;
 
     @SerializedName("BosKapasite")
-    private String bosKapasite;
+    private Integer bosKapasite;
 
     @SerializedName("ParkTipi")
     private String parkTipi;
@@ -31,16 +32,16 @@ public class Park extends BaseDataModel {
     private String ilce;
 
     @SerializedName("Distance")
-    private String distance;
+    private Double distance;
 
     @SerializedName("UcretsizParklanmaDk")
-    private String ucretsizParkDk;
+    private Integer ucretsizParklanmaDk;
 
-    public String getParkId() {
+    public Integer getParkId() {
         return parkId;
     }
 
-    public void setParkId(String parkId) {
+    public void setParkId(Integer parkId) {
         this.parkId = parkId;
     }
 
@@ -68,19 +69,19 @@ public class Park extends BaseDataModel {
         this.longitude = longitude;
     }
 
-    public String getKapasite() {
+    public Integer getKapasite() {
         return kapasite;
     }
 
-    public void setKapasite(String kapasite) {
+    public void setKapasite(Integer kapasite) {
         this.kapasite = kapasite;
     }
 
-    public String getBosKapasite() {
+    public Integer getBosKapasite() {
         return bosKapasite;
     }
 
-    public void setBosKapasite(String bosKapasite) {
+    public void setBosKapasite(Integer bosKapasite) {
         this.bosKapasite = bosKapasite;
     }
 
@@ -100,20 +101,20 @@ public class Park extends BaseDataModel {
         this.ilce = ilce;
     }
 
-    public String getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 
-    public String getUcretsizParkDk() {
-        return ucretsizParkDk;
+    public Integer getUcretsizParklanmaDk() {
+        return ucretsizParklanmaDk;
     }
 
-    public void setUcretsizParkDk(String ucretsizParkDk) {
-        this.ucretsizParkDk = ucretsizParkDk;
+    public void setUcretsizParklanmaDk(Integer ucretsizParklanmaDk) {
+        this.ucretsizParklanmaDk = ucretsizParklanmaDk;
     }
 
     @Override
@@ -130,27 +131,27 @@ public class Park extends BaseDataModel {
                 Objects.equals(parkTipi, park.parkTipi) &&
                 Objects.equals(ilce, park.ilce) &&
                 Objects.equals(distance, park.distance) &&
-                Objects.equals(ucretsizParkDk, park.ucretsizParkDk);
+                Objects.equals(ucretsizParklanmaDk, park.ucretsizParklanmaDk);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(parkId, parkAdi, latitude, longitude, kapasite, bosKapasite, parkTipi, ilce, distance, ucretsizParkDk);
+        return Objects.hash(parkId, parkAdi, latitude, longitude, kapasite, bosKapasite, parkTipi, ilce, distance, ucretsizParklanmaDk);
     }
 
     @Override
     public String toString() {
         return "Park{" +
-                "parkId='" + parkId + '\'' +
+                "parkId=" + parkId +
                 ", parkAdi='" + parkAdi + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
-                ", kapasite='" + kapasite + '\'' +
-                ", bosKapasite='" + bosKapasite + '\'' +
+                ", kapasite=" + kapasite +
+                ", bosKapasite=" + bosKapasite +
                 ", parkTipi='" + parkTipi + '\'' +
                 ", ilce='" + ilce + '\'' +
-                ", distance='" + distance + '\'' +
-                ", ucretsizParkDk='" + ucretsizParkDk + '\'' +
+                ", distance=" + distance +
+                ", ucretsizParklanmaDk=" + ucretsizParklanmaDk +
                 '}';
     }
 }
