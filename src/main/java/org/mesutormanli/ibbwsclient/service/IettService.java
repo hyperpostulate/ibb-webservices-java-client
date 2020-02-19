@@ -91,8 +91,7 @@ public class IettService extends BaseService {
     }
 
     public List<FiloAracKonum> getFiloAracKonumWithPlaka(String plaka) {
-        final String json = seferGerceklesmeSoap.getFiloAracKonumJson();
-        return Arrays.stream(gson.fromJson(json, FiloAracKonum[].class))
+        return getFiloAracKonum().stream()
                 .filter(filoAracKonum -> plaka.equals(filoAracKonum.getPlaka()))
                 .collect(Collectors.toList());
     }
