@@ -35,4 +35,16 @@ class IsparkServiceTest extends BaseServiceTest {
         final List<ParkDetay> parkDetayListWithIlce = isparkService.getAvailableParkDetayListWithIlce("BAYRAMPAŞA");
         printResult(parkDetayListWithIlce);
     }
+
+    @Test
+    void getAvailableParkDetayListWithParkTipi() {
+        final List<ParkDetay> parkDetayListWithIlce = isparkService.getAvailableParkDetayListWithParkTipi("KAPALI OTOPARK");
+        printResult(parkDetayListWithIlce);
+    }
+
+    @Test
+    void getAvailableParkDetayListWithIlceAndParkTipi() {
+        final List<ParkDetay> parkDetayListWithIlce = isparkService.getAvailableParkDetayListWithIlceAndParkTipi("BAYRAMPAŞA", "KAPALI OTOPARK");
+        printResult(parkDetayListWithIlce);
+    }
 }

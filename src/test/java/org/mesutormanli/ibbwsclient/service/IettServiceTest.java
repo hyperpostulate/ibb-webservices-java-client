@@ -17,8 +17,8 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getDuyurular() {
-        final List<Duyuru> duyurular = iettService.getDuyurular();
+    void getAllDuyurular() {
+        final List<Duyuru> duyurular = iettService.getAllDuyurular();
         printResult(duyurular);
     }
 
@@ -29,20 +29,44 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getDurak() {
-        final List<Durak> durak = iettService.getDurak("");
+    void getAllDurak() {
+        final List<Durak> durak = iettService.getAllDurak();
         printResult(durak);
     }
 
     @Test
-    void getGaraj() {
-        final List<Garaj> garaj = iettService.getGaraj();
+    void getDurakWithDurakKodu() {
+        final List<Durak> durak = iettService.getDurakWithDurakKodu("202471");
+        printResult(durak);
+    }
+
+    @Test
+    void getDurakWithIlce() {
+        final List<Durak> durak = iettService.getDurakWithIlce("Esenler");
+        printResult(durak);
+    }
+
+    @Test
+    void getDurakWithYon() {
+        final List<Durak> durak = iettService.getDurakWithYon("FENERTEPE");
+        printResult(durak);
+    }
+
+    @Test
+    void getAllGaraj() {
+        final List<Garaj> garaj = iettService.getAllGaraj();
         printResult(garaj);
     }
 
     @Test
-    void getPlanlananSeferSaati() {
-        final List<PlanlananSeferSaati> planlananSeferSaati = iettService.getPlanlananSeferSaati("32A");
+    void getGarajWithGarajAdi() {
+        final List<Garaj> garaj = iettService.getGarajWithGarajAdi("AVCILARGARAJI");
+        printResult(garaj);
+    }
+
+    @Test
+    void getPlanlananSeferSaatiWithHat() {
+        final List<PlanlananSeferSaati> planlananSeferSaati = iettService.getPlanlananSeferSaatiWithHat("32A");
         printResult(planlananSeferSaati);
     }
 
