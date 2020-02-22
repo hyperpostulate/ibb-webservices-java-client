@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+
+  <h:form>
+    <p:inputText value="${homePageBean.hatKodu}"/>
+    <p:commandButton  value="Search" action="${homePageBean.search()}" update="@form"/>
+    <p:dataTable   rows="10"
+                   paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                   rowsPerPageTemplate="5,10,15" paginator="true"  var="item" value="${homePageBean.planlananSeferSaatiList}" rendered="${homePageBean.planlananSeferSaatiList != null}">
+      <p:column headerText="Hat Kodu">
+        <h:outputText value="${item.hatKodu}"/>
+      </p:column>
+
+      <p:column headerText="Hat Adı">
+        <h:outputText value="${item.hatAdi}"/>
+      </p:column>
+
+      <p:column headerText="Hat Güzergah">
+        <h:outputText value="${item.guzergah}"/>
+      </p:column>
+
+      <p:column headerText="Hat Saati">
+        <h:outputText value="${item.saat}"/>
+      </p:column>
+
+      <p:column headerText="Servis Tipi">
+        <h:outputText value="${item.servisTipi}"/>
+      </p:column>
+    </p:dataTable>
+  </h:form>
+
+</h:body>
+</html>
