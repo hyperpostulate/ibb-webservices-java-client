@@ -25,13 +25,13 @@ public interface DuyurularSoap {
     /**
      * 
      * @return
-     *     returns GetDuyurularXMLResponse.GetDuyurularXMLResult
+     *     returns org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularXMLResponse.GetDuyurularXMLResult
      */
     @WebMethod(operationName = "GetDuyurular_XML", action = "http://tempuri.org/GetDuyurular_XML")
     @WebResult(name = "GetDuyurular_XMLResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetDuyurular_XML", targetNamespace = "http://tempuri.org/", className = "GetDuyurularXML")
-    @ResponseWrapper(localName = "GetDuyurular_XMLResponse", targetNamespace = "http://tempuri.org/", className = "GetDuyurularXMLResponse")
-    public GetDuyurularXMLResponse.GetDuyurularXMLResult getDuyurularXML();
+    @RequestWrapper(localName = "GetDuyurular_XML", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularXML")
+    @ResponseWrapper(localName = "GetDuyurular_XMLResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularXMLResponse")
+    public org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularXMLResponse.GetDuyurularXMLResult getDuyurularXML();
 
     /**
      * 
@@ -40,8 +40,8 @@ public interface DuyurularSoap {
      */
     @WebMethod(operationName = "GetDuyurular_json", action = "http://tempuri.org/GetDuyurular_json")
     @WebResult(name = "GetDuyurular_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetDuyurular_json", targetNamespace = "http://tempuri.org/", className = "GetDuyurularJson")
-    @ResponseWrapper(localName = "GetDuyurular_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetDuyurularJsonResponse")
+    @RequestWrapper(localName = "GetDuyurular_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularJson")
+    @ResponseWrapper(localName = "GetDuyurular_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.duyurular.GetDuyurularJsonResponse")
     public String getDuyurularJson();
 
 }

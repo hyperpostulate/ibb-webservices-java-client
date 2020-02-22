@@ -1,13 +1,16 @@
 
 package org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the org.mesutormanli.ibbwsclient.iett.sefergerceklesme package. 
+ * generated in the org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme package. 
  * &lt;p&gt;An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -21,9 +24,10 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _AuthHeader_QNAME = new QName("http://tempuri.org/", "AuthHeader");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.mesutormanli.ibbwsclient.iett.sefergerceklesme
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme
      * 
      */
     public ObjectFactory() {
@@ -171,6 +175,14 @@ public class ObjectFactory {
      */
     public GetFiloDurumXMLResponse.GetFiloDurumXMLResult createGetFiloDurumXMLResponseGetFiloDurumXMLResult() {
         return new GetFiloDurumXMLResponse.GetFiloDurumXMLResult();
+    }
+
+    /**
+     * Create an instance of {@link AuthHeader }
+     * 
+     */
+    public AuthHeader createAuthHeader() {
+        return new AuthHeader();
     }
 
     /**
@@ -683,6 +695,19 @@ public class ObjectFactory {
      */
     public GetUzulsuzKartKullanimJsonResponse createGetUzulsuzKartKullanimJsonResponse() {
         return new GetUzulsuzKartKullanimJsonResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AuthHeader }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AuthHeader }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "AuthHeader")
+    public JAXBElement<AuthHeader> createAuthHeader(AuthHeader value) {
+        return new JAXBElement<AuthHeader>(_AuthHeader_QNAME, AuthHeader.class, null, value);
     }
 
 }

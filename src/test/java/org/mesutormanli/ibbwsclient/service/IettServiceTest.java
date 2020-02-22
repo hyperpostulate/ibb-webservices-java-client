@@ -71,12 +71,6 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getBozukSatih() {
-        final List<BozukSatih> bozukSatih = iettService.getBozukSatih(15);
-        printResult(bozukSatih);
-    }
-
-    @Test
     void getFiloAracKonum() {
         final List<FiloAracKonum> filoAracKonum = iettService.getFiloAracKonum();
         printResult(filoAracKonum);

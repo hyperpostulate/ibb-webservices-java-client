@@ -80,11 +80,6 @@ public class IettService extends BaseService {
         return Arrays.asList(gson.fromJson(json, PlanlananSeferSaati[].class));
     }
 
-    public List<BozukSatih> getBozukSatih(int saat) {
-        final String json = seferGerceklesmeSoap.getBozukSatihJson(saat);
-        return Arrays.asList(gson.fromJson(json, BozukSatih[].class));
-    }
-
     public List<FiloAracKonum> getFiloAracKonum() {
         final String json = seferGerceklesmeSoap.getFiloAracKonumJson();
         return Arrays.asList(gson.fromJson(json, FiloAracKonum[].class));

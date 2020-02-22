@@ -1,10 +1,6 @@
-<wsdl:definitions xmlns="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  targetNamespace="http://tempuri.org/">
+<wsdl:definitions xmlns="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
     <wsdl:types>
-        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-                  targetNamespace="http://tempuri.org/">
+        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
             <s:element name="GetPlanlananSeferSaati_XML">
                 <s:complexType>
                     <s:sequence>
@@ -43,8 +39,7 @@
             <s:element name="GetPlanlananSeferSaati_jsonResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_jsonResult"
-                                   type="s:string"/>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_jsonResult" type="s:string"/>
                     </s:sequence>
                 </s:complexType>
             </s:element>
@@ -78,8 +73,7 @@
             <s:element name="GetPlanlananSeferSaatiAraDurak_jsonResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaatiAraDurak_jsonResult"
-                                   type="s:string"/>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaatiAraDurak_jsonResult" type="s:string"/>
                     </s:sequence>
                 </s:complexType>
             </s:element>
@@ -147,8 +141,7 @@
             <s:element name="GetMetobusFrekansIlkSonSefer_jsonResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekansIlkSonSefer_jsonResult"
-                                   type="s:string"/>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetMetobusFrekansIlkSonSefer_jsonResult" type="s:string"/>
                     </s:sequence>
                 </s:complexType>
             </s:element>
@@ -182,8 +175,7 @@
             <s:element name="GetPlanlananSeferSaati_IGA_jsonResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_IGA_jsonResult"
-                                   type="s:string"/>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetPlanlananSeferSaati_IGA_jsonResult" type="s:string"/>
                     </s:sequence>
                 </s:complexType>
             </s:element>
@@ -217,33 +209,32 @@
             <s:element name="GetDurakGecisZaman_IGA_jsonResponse">
                 <s:complexType>
                     <s:sequence>
-                        <s:element maxOccurs="1" minOccurs="0" name="GetDurakGecisZaman_IGA_jsonResult"
-                                   type="s:string"/>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetDurakGecisZaman_IGA_jsonResult" type="s:string"/>
                     </s:sequence>
                 </s:complexType>
             </s:element>
         </s:schema>
     </wsdl:types>
     <wsdl:message name="GetPlanlananSeferSaati_jsonSoapIn">
-        <wsdl:part element="tns:GetPlanlananSeferSaati_json" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:GetPlanlananSeferSaati_json" name="parameters"> </wsdl:part>
     </wsdl:message>
     <wsdl:message name="GetPlanlananSeferSaati_XMLSoapOut">
-        <wsdl:part element="tns:GetPlanlananSeferSaati_XMLResponse" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:GetPlanlananSeferSaati_XMLResponse" name="parameters"> </wsdl:part>
     </wsdl:message>
     <wsdl:message name="GetPlanlananSeferSaati_XMLSoapIn">
-        <wsdl:part element="tns:GetPlanlananSeferSaati_XML" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:GetPlanlananSeferSaati_XML" name="parameters"> </wsdl:part>
     </wsdl:message>
     <wsdl:message name="GetPlanlananSeferSaati_jsonSoapOut">
-        <wsdl:part element="tns:GetPlanlananSeferSaati_jsonResponse" name="parameters"></wsdl:part>
+        <wsdl:part element="tns:GetPlanlananSeferSaati_jsonResponse" name="parameters"> </wsdl:part>
     </wsdl:message>
     <wsdl:portType name="PlanlananSeferSaatiSoap">
         <wsdl:operation name="GetPlanlananSeferSaati_XML">
-            <wsdl:input message="tns:GetPlanlananSeferSaati_XMLSoapIn"></wsdl:input>
-            <wsdl:output message="tns:GetPlanlananSeferSaati_XMLSoapOut"></wsdl:output>
+            <wsdl:input message="tns:GetPlanlananSeferSaati_XMLSoapIn"> </wsdl:input>
+            <wsdl:output message="tns:GetPlanlananSeferSaati_XMLSoapOut"> </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="GetPlanlananSeferSaati_json">
-            <wsdl:input message="tns:GetPlanlananSeferSaati_jsonSoapIn"></wsdl:input>
-            <wsdl:output message="tns:GetPlanlananSeferSaati_jsonSoapOut"></wsdl:output>
+            <wsdl:input message="tns:GetPlanlananSeferSaati_jsonSoapIn"> </wsdl:input>
+            <wsdl:output message="tns:GetPlanlananSeferSaati_jsonSoapOut"> </wsdl:output>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="PlanlananSeferSaatiSoap" type="tns:PlanlananSeferSaatiSoap">

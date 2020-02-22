@@ -26,27 +26,21 @@ public interface SeferGerceklesmeSoap {
     /**
      * 
      * @return
-     *     returns GetBozukSatihXMLResponse.GetBozukSatihXMLResult
+     *     returns org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihXMLResponse.GetBozukSatihXMLResult
      */
     @WebMethod(operationName = "GetBozukSatih_XML", action = "http://tempuri.org/GetBozukSatih_XML")
     @WebResult(name = "GetBozukSatih_XMLResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetBozukSatih_XML", targetNamespace = "http://tempuri.org/", className = "GetBozukSatihXML")
-    @ResponseWrapper(localName = "GetBozukSatih_XMLResponse", targetNamespace = "http://tempuri.org/", className = "GetBozukSatihXMLResponse")
-    public GetBozukSatihXMLResponse.GetBozukSatihXMLResult getBozukSatihXML();
+    @RequestWrapper(localName = "GetBozukSatih_XML", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihXML")
+    @ResponseWrapper(localName = "GetBozukSatih_XMLResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihXMLResponse")
+    public org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihXMLResponse.GetBozukSatihXMLResult getBozukSatihXML();
 
     /**
      * 
-     * @param saat
-     * @return
-     *     returns java.lang.String
      */
     @WebMethod(operationName = "GetBozukSatih_json", action = "http://tempuri.org/GetBozukSatih_json")
-    @WebResult(name = "GetBozukSatih_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetBozukSatih_json", targetNamespace = "http://tempuri.org/", className = "GetBozukSatihJson")
-    @ResponseWrapper(localName = "GetBozukSatih_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetBozukSatihJsonResponse")
-    public String getBozukSatihJson(
-        @WebParam(name = "saat", targetNamespace = "http://tempuri.org/")
-        int saat);
+    @RequestWrapper(localName = "GetBozukSatih_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihJson")
+    @ResponseWrapper(localName = "GetBozukSatih_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihJsonResponse")
+    public void getBozukSatihJson();
 
     /**
      * 
@@ -55,21 +49,21 @@ public interface SeferGerceklesmeSoap {
      */
     @WebMethod(operationName = "GetFiloAracKonum_json", action = "http://tempuri.org/GetFiloAracKonum_json")
     @WebResult(name = "GetFiloAracKonum_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetFiloAracKonum_json", targetNamespace = "http://tempuri.org/", className = "GetFiloAracKonumJson")
-    @ResponseWrapper(localName = "GetFiloAracKonum_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetFiloAracKonumJsonResponse")
+    @RequestWrapper(localName = "GetFiloAracKonum_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetFiloAracKonumJson")
+    @ResponseWrapper(localName = "GetFiloAracKonum_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetFiloAracKonumJsonResponse")
     public String getFiloAracKonumJson();
 
     /**
      * 
      * @param tarih
      * @return
-     *     returns GetKazaLokasyonXMLResponse.GetKazaLokasyonXMLResult
+     *     returns org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonXMLResponse.GetKazaLokasyonXMLResult
      */
     @WebMethod(operationName = "GetKazaLokasyon_XML", action = "http://tempuri.org/GetKazaLokasyon_XML")
     @WebResult(name = "GetKazaLokasyon_XMLResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetKazaLokasyon_XML", targetNamespace = "http://tempuri.org/", className = "GetKazaLokasyonXML")
-    @ResponseWrapper(localName = "GetKazaLokasyon_XMLResponse", targetNamespace = "http://tempuri.org/", className = "GetKazaLokasyonXMLResponse")
-    public GetKazaLokasyonXMLResponse.GetKazaLokasyonXMLResult getKazaLokasyonXML(
+    @RequestWrapper(localName = "GetKazaLokasyon_XML", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonXML")
+    @ResponseWrapper(localName = "GetKazaLokasyon_XMLResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonXMLResponse")
+    public org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonXMLResponse.GetKazaLokasyonXMLResult getKazaLokasyonXML(
         @WebParam(name = "Tarih", targetNamespace = "http://tempuri.org/")
         String tarih);
 
@@ -81,8 +75,8 @@ public interface SeferGerceklesmeSoap {
      */
     @WebMethod(operationName = "GetKazaLokasyon_json", action = "http://tempuri.org/GetKazaLokasyon_json")
     @WebResult(name = "GetKazaLokasyon_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetKazaLokasyon_json", targetNamespace = "http://tempuri.org/", className = "GetKazaLokasyonJson")
-    @ResponseWrapper(localName = "GetKazaLokasyon_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetKazaLokasyonJsonResponse")
+    @RequestWrapper(localName = "GetKazaLokasyon_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonJson")
+    @ResponseWrapper(localName = "GetKazaLokasyon_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetKazaLokasyonJsonResponse")
     public String getKazaLokasyonJson(
         @WebParam(name = "Tarih", targetNamespace = "http://tempuri.org/")
         String tarih);

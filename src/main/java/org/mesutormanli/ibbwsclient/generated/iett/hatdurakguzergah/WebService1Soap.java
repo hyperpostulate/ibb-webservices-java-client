@@ -27,13 +27,13 @@ public interface WebService1Soap {
      * 
      * @param durakKodu
      * @return
-     *     returns GetDurakXMLResponse.GetDurakXMLResult
+     *     returns org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakXMLResponse.GetDurakXMLResult
      */
     @WebMethod(operationName = "GetDurak_XML", action = "http://tempuri.org/GetDurak_XML")
     @WebResult(name = "GetDurak_XMLResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetDurak_XML", targetNamespace = "http://tempuri.org/", className = "GetDurakXML")
-    @ResponseWrapper(localName = "GetDurak_XMLResponse", targetNamespace = "http://tempuri.org/", className = "GetDurakXMLResponse")
-    public GetDurakXMLResponse.GetDurakXMLResult getDurakXML(
+    @RequestWrapper(localName = "GetDurak_XML", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakXML")
+    @ResponseWrapper(localName = "GetDurak_XMLResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakXMLResponse")
+    public org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakXMLResponse.GetDurakXMLResult getDurakXML(
         @WebParam(name = "DurakKodu", targetNamespace = "http://tempuri.org/")
         String durakKodu);
 
@@ -45,8 +45,8 @@ public interface WebService1Soap {
      */
     @WebMethod(operationName = "GetDurak_json", action = "http://tempuri.org/GetDurak_json")
     @WebResult(name = "GetDurak_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetDurak_json", targetNamespace = "http://tempuri.org/", className = "GetDurakJson")
-    @ResponseWrapper(localName = "GetDurak_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetDurakJsonResponse")
+    @RequestWrapper(localName = "GetDurak_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakJson")
+    @ResponseWrapper(localName = "GetDurak_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetDurakJsonResponse")
     public String getDurakJson(
         @WebParam(name = "DurakKodu", targetNamespace = "http://tempuri.org/")
         String durakKodu);
@@ -54,13 +54,13 @@ public interface WebService1Soap {
     /**
      * 
      * @return
-     *     returns GetGarajXMLResponse.GetGarajXMLResult
+     *     returns org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajXMLResponse.GetGarajXMLResult
      */
     @WebMethod(operationName = "GetGaraj_XML", action = "http://tempuri.org/GetGaraj_XML")
     @WebResult(name = "GetGaraj_XMLResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetGaraj_XML", targetNamespace = "http://tempuri.org/", className = "GetGarajXML")
-    @ResponseWrapper(localName = "GetGaraj_XMLResponse", targetNamespace = "http://tempuri.org/", className = "GetGarajXMLResponse")
-    public GetGarajXMLResponse.GetGarajXMLResult getGarajXML();
+    @RequestWrapper(localName = "GetGaraj_XML", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajXML")
+    @ResponseWrapper(localName = "GetGaraj_XMLResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajXMLResponse")
+    public org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajXMLResponse.GetGarajXMLResult getGarajXML();
 
     /**
      * 
@@ -69,8 +69,8 @@ public interface WebService1Soap {
      */
     @WebMethod(operationName = "GetGaraj_json", action = "http://tempuri.org/GetGaraj_json")
     @WebResult(name = "GetGaraj_jsonResult", targetNamespace = "http://tempuri.org/")
-    @RequestWrapper(localName = "GetGaraj_json", targetNamespace = "http://tempuri.org/", className = "GetGarajJson")
-    @ResponseWrapper(localName = "GetGaraj_jsonResponse", targetNamespace = "http://tempuri.org/", className = "GetGarajJsonResponse")
+    @RequestWrapper(localName = "GetGaraj_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajJson")
+    @ResponseWrapper(localName = "GetGaraj_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.GetGarajJsonResponse")
     public String getGarajJson();
 
 }
