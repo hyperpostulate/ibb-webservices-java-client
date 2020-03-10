@@ -1,5 +1,7 @@
 package org.mesutormanli.ibbwsclient.service;
 
+import org.mesutormanli.ibbwsclient.generated.iett.aracozellik.AracOzellik;
+import org.mesutormanli.ibbwsclient.generated.iett.aracozellik.AracOzellikSoap;
 import org.mesutormanli.ibbwsclient.generated.iett.duyurular.Duyurular;
 import org.mesutormanli.ibbwsclient.generated.iett.duyurular.DuyurularSoap;
 import org.mesutormanli.ibbwsclient.generated.iett.hatdurakguzergah.WebService1;
@@ -10,6 +12,7 @@ import org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.SeferGercekl
 import org.mesutormanli.ibbwsclient.model.iett.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -22,10 +25,13 @@ public class IettService extends BaseService {
     private WebService1Soap hatDurakGuzergahSoap;
     private PlanlananSeferSaatiSoap planlananSeferSaatiSoap;
     private SeferGerceklesmeSoap seferGerceklesmeSoap;
+    private AracOzellikSoap aracOzellikSoap;
+
     private URL duyurularWsdlURL;
     private URL hatDurakGuzergahWsdlURL;
     private URL planlananSeferSaatiWsdlURL;
     private URL seferGerceklesmerWsdlURL;
+    private URL aracOzellikWsdlURL;
 
     public IettService() {
         configureWsdlURLs();
@@ -38,6 +44,7 @@ public class IettService extends BaseService {
             this.hatDurakGuzergahWsdlURL = new URL("file:src/main/resources/HatDurakGuzergah.wsdl");
             this.planlananSeferSaatiWsdlURL = new URL("file:src/main/resources/PlanlananSeferSaati.wsdl");
             this.seferGerceklesmerWsdlURL = new URL("file:src/main/resources/SeferGerceklesme.wsdl");
+            this.aracOzellikWsdlURL = new URL("file:src/main/resources/AracOzellik.wsdl");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -48,6 +55,7 @@ public class IettService extends BaseService {
         this.hatDurakGuzergahSoap = new WebService1(this.hatDurakGuzergahWsdlURL).getWebService1Soap();
         this.planlananSeferSaatiSoap = new org.mesutormanli.ibbwsclient.generated.iett.planlanansefersaati.PlanlananSeferSaati(this.planlananSeferSaatiWsdlURL).getPlanlananSeferSaatiSoap();
         this.seferGerceklesmeSoap = new SeferGerceklesme(this.seferGerceklesmerWsdlURL).getSeferGerceklesmeSoap();
+        this.aracOzellikSoap = new AracOzellik(this.aracOzellikWsdlURL).getAracOzellikSoap();
     }
 
     public List<Duyuru> getAllDuyurular() {
@@ -115,6 +123,11 @@ public class IettService extends BaseService {
     public List<KazaLokasyon> getKazaLokasyon(String tarih) {
         final String json = seferGerceklesmeSoap.getKazaLokasyonJson(tarih);
         return Arrays.asList(gson.fromJson(json, KazaLokasyon[].class));
+    }
+
+    public List<AkaryakitToplamLitre> getAkaryakitToplamLitre(int yil, int ay){
+        final String json = aracOzellikSoap.getAkarYakitToplamLitreJson(yil, ay);
+        return Arrays.asList(gson.fromJson(json, AkaryakitToplamLitre[].class));
     }
 
 }

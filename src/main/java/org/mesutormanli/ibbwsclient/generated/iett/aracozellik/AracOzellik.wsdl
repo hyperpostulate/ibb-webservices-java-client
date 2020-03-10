@@ -1,0 +1,168 @@
+<wsdl:definitions xmlns="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <s:element name="GetAracOzellikleriIETT_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="KapiNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriIETT_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAracOzellikleriIETT_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="AuthHeader" type="tns:AuthHeader"/>
+            <s:complexType name="AuthHeader">
+                <s:sequence>
+                    <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
+                    <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+                </s:sequence>
+                <s:anyAttribute/>
+            </s:complexType>
+            <s:element name="GetAracOzellikleriIETT_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="KapiNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriIETT_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAracOzellikleriIETT_jsonResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriOHO_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="KapiNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriOHO_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAracOzellikleriOHO_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriOHO_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="KapiNo" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAracOzellikleriOHO_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAracOzellikleriOHO_jsonResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAkarYakitToplamLitre_XML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="1" name="Yil" type="s:int"/>
+                        <s:element maxOccurs="1" minOccurs="1" name="Ay" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAkarYakitToplamLitre_XMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAkarYakitToplamLitre_XMLResult">
+                            <s:complexType>
+                                <s:sequence>
+                                    <s:any/>
+                                </s:sequence>
+                            </s:complexType>
+                        </s:element>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAkarYakitToplamLitre_json">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="1" name="Yil" type="s:int"/>
+                        <s:element maxOccurs="1" minOccurs="1" name="Ay" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAkarYakitToplamLitre_jsonResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element maxOccurs="1" minOccurs="0" name="GetAkarYakitToplamLitre_jsonResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAkarYakitToplamLitre_jsonSoapOut">
+        <wsdl:part element="tns:GetAkarYakitToplamLitre_jsonResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetAkarYakitToplamLitre_jsonSoapIn">
+        <wsdl:part element="tns:GetAkarYakitToplamLitre_json" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetAkarYakitToplamLitre_XMLSoapOut">
+        <wsdl:part element="tns:GetAkarYakitToplamLitre_XMLResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetAkarYakitToplamLitre_XMLSoapIn">
+        <wsdl:part element="tns:GetAkarYakitToplamLitre_XML" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="AracOzellikSoap">
+        <wsdl:operation name="GetAkarYakitToplamLitre_XML">
+            <wsdl:input message="tns:GetAkarYakitToplamLitre_XMLSoapIn"> </wsdl:input>
+            <wsdl:output message="tns:GetAkarYakitToplamLitre_XMLSoapOut"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAkarYakitToplamLitre_json">
+            <wsdl:input message="tns:GetAkarYakitToplamLitre_jsonSoapIn"> </wsdl:input>
+            <wsdl:output message="tns:GetAkarYakitToplamLitre_jsonSoapOut"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AracOzellikSoap" type="tns:AracOzellikSoap">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetAkarYakitToplamLitre_XML">
+            <soap:operation soapAction="http://tempuri.org/GetAkarYakitToplamLitre_XML" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+                <soap:header message="tns:GetAkarYakitToplamLitre_XMLAuthHeader" part="AuthHeader" use="literal"> </soap:header>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAkarYakitToplamLitre_json">
+            <soap:operation soapAction="http://tempuri.org/GetAkarYakitToplamLitre_json" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+                <soap:header message="tns:GetAkarYakitToplamLitre_jsonAuthHeader" part="AuthHeader" use="literal"> </soap:header>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AracOzellik">
+        <wsdl:port binding="tns:AracOzellikSoap" name="AracOzellikSoap">
+            <soap:address location="https://api.ibb.gov.tr/iett/AracAnaVeri/AracOzellik.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -87,4 +87,10 @@ class IettServiceTest extends BaseServiceTest {
         final List<KazaLokasyon> kazaLokasyon = iettService.getKazaLokasyon("2020-02-02");
         printResult(kazaLokasyon);
     }
+
+    @Test
+    void getAkaryakitToplamLitre(){
+        List<AkaryakitToplamLitre> akaryakitToplamLitre = iettService.getAkaryakitToplamLitre(2019, 2);
+        printResult(akaryakitToplamLitre);
+    }
 }
