@@ -12,7 +12,6 @@ import org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.SeferGercekl
 import org.mesutormanli.ibbwsclient.model.iett.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
 
-import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
