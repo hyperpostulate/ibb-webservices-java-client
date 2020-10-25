@@ -1,4 +1,3 @@
-
 package org.mesutormanli.ibbwsclient.model.iett;
 
 import com.google.gson.annotations.SerializedName;

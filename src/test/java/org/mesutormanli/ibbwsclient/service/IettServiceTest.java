@@ -89,7 +89,7 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getAkaryakitToplamLitre(){
+    void getAkaryakitToplamLitre() {
         List<AkaryakitToplamLitre> akaryakitToplamLitre = iettService.getAkaryakitToplamLitre(2019, 2);
         printResult(akaryakitToplamLitre);
     }

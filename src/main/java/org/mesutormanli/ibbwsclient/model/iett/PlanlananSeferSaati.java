@@ -23,7 +23,7 @@ public class PlanlananSeferSaati extends BaseDataModel {
     private String gunTipi;
 
     @SerializedName("GUZERGAH_ISARETI")
-    private String  guzergahIsareti;
+    private String guzergahIsareti;
 
     @SerializedName("SSERVISTIPI")
     private String servisTipi;

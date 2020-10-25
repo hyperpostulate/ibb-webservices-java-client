@@ -124,7 +124,7 @@ public class IettService extends BaseService {
         return Arrays.asList(gson.fromJson(json, KazaLokasyon[].class));
     }
 
-    public List<AkaryakitToplamLitre> getAkaryakitToplamLitre(int yil, int ay){
+    public List<AkaryakitToplamLitre> getAkaryakitToplamLitre(int yil, int ay) {
         final String json = aracOzellikSoap.getAkarYakitToplamLitreJson(yil, ay);
         return Arrays.asList(gson.fromJson(json, AkaryakitToplamLitre[].class));
     }
