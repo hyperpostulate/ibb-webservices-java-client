@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &amp;lt;complexContent&amp;gt;
  *     &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&amp;gt;
  *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name="GetBozukSatih_jsonResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&amp;gt;
+ *         &amp;lt;element name="HatKodu" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&amp;gt;
  *       &amp;lt;/sequence&amp;gt;
  *     &amp;lt;/restriction&amp;gt;
  *   &amp;lt;/complexContent&amp;gt;
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getBozukSatihJsonResult"
+    "hatKodu"
 })
-@XmlRootElement(name = "GetBozukSatih_jsonResponse")
-public class GetBozukSatihJsonResponse {
+@XmlRootElement(name = "GetHatOtoKonum_json")
+public class GetHatOtoKonumJson {
 
-    @XmlElement(name = "GetBozukSatih_jsonResult")
-    protected String getBozukSatihJsonResult;
+    @XmlElement(name = "HatKodu")
+    protected String hatKodu;
 
     /**
-     * Gets the value of the getBozukSatihJsonResult property.
+     * Gets the value of the hatKodu property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getGetBozukSatihJsonResult() {
-        return getBozukSatihJsonResult;
+    public String getHatKodu() {
+        return hatKodu;
     }
 
     /**
-     * Sets the value of the getBozukSatihJsonResult property.
+     * Sets the value of the hatKodu property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setGetBozukSatihJsonResult(String value) {
-        this.getBozukSatihJsonResult = value;
+    public void setHatKodu(String value) {
+        this.hatKodu = value;
     }
 
 }

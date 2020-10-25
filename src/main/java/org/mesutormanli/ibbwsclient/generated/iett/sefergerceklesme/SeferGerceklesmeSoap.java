@@ -36,11 +36,14 @@ public interface SeferGerceklesmeSoap {
 
     /**
      * 
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod(operationName = "GetBozukSatih_json", action = "http://tempuri.org/GetBozukSatih_json")
+    @WebResult(name = "GetBozukSatih_jsonResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "GetBozukSatih_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihJson")
     @ResponseWrapper(localName = "GetBozukSatih_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetBozukSatihJsonResponse")
-    public void getBozukSatihJson();
+    public String getBozukSatihJson();
 
     /**
      * 
@@ -52,6 +55,20 @@ public interface SeferGerceklesmeSoap {
     @RequestWrapper(localName = "GetFiloAracKonum_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetFiloAracKonumJson")
     @ResponseWrapper(localName = "GetFiloAracKonum_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetFiloAracKonumJsonResponse")
     public String getFiloAracKonumJson();
+
+    /**
+     * 
+     * @param hatKodu
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod(operationName = "GetHatOtoKonum_json", action = "http://tempuri.org/GetHatOtoKonum_json")
+    @WebResult(name = "GetHatOtoKonum_jsonResult", targetNamespace = "http://tempuri.org/")
+    @RequestWrapper(localName = "GetHatOtoKonum_json", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetHatOtoKonumJson")
+    @ResponseWrapper(localName = "GetHatOtoKonum_jsonResponse", targetNamespace = "http://tempuri.org/", className = "org.mesutormanli.ibbwsclient.generated.iett.sefergerceklesme.GetHatOtoKonumJsonResponse")
+    public String getHatOtoKonumJson(
+        @WebParam(name = "HatKodu", targetNamespace = "http://tempuri.org/")
+        String hatKodu);
 
     /**
      * 

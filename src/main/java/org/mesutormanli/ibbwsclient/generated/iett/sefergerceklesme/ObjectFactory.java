@@ -698,6 +698,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetHatOtoKonumJson }
+     * 
+     */
+    public GetHatOtoKonumJson createGetHatOtoKonumJson() {
+        return new GetHatOtoKonumJson();
+    }
+
+    /**
+     * Create an instance of {@link GetHatOtoKonumJsonResponse }
+     * 
+     */
+    public GetHatOtoKonumJsonResponse createGetHatOtoKonumJsonResponse() {
+        return new GetHatOtoKonumJsonResponse();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AuthHeader }{@code >}
      * 
      * @param value

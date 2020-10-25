@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &amp;lt;complexContent&amp;gt;
  *     &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&amp;gt;
  *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name="GetBozukSatih_jsonResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&amp;gt;
+ *         &amp;lt;element name="GetHatOtoKonum_jsonResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&amp;gt;
  *       &amp;lt;/sequence&amp;gt;
  *     &amp;lt;/restriction&amp;gt;
  *   &amp;lt;/complexContent&amp;gt;
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getBozukSatihJsonResult"
+    "getHatOtoKonumJsonResult"
 })
-@XmlRootElement(name = "GetBozukSatih_jsonResponse")
-public class GetBozukSatihJsonResponse {
+@XmlRootElement(name = "GetHatOtoKonum_jsonResponse")
+public class GetHatOtoKonumJsonResponse {
 
-    @XmlElement(name = "GetBozukSatih_jsonResult")
-    protected String getBozukSatihJsonResult;
+    @XmlElement(name = "GetHatOtoKonum_jsonResult")
+    protected String getHatOtoKonumJsonResult;
 
     /**
-     * Gets the value of the getBozukSatihJsonResult property.
+     * Gets the value of the getHatOtoKonumJsonResult property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getGetBozukSatihJsonResult() {
-        return getBozukSatihJsonResult;
+    public String getGetHatOtoKonumJsonResult() {
+        return getHatOtoKonumJsonResult;
     }
 
     /**
-     * Sets the value of the getBozukSatihJsonResult property.
+     * Sets the value of the getHatOtoKonumJsonResult property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setGetBozukSatihJsonResult(String value) {
-        this.getBozukSatihJsonResult = value;
+    public void setGetHatOtoKonumJsonResult(String value) {
+        this.getHatOtoKonumJsonResult = value;
     }
 
 }

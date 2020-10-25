@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "SeferGerceklesme", targetNamespace = "http://tempuri.org/", wsdlLocation = "file:/Users/mormanli/PersonalProjects/ibb-webservices-java-client/src/main/java/org/mesutormanli/ibbwsclient/generated/iett/sefergerceklesme/SeferGerceklesme.wsdl")
+@WebServiceClient(name = "SeferGerceklesme", targetNamespace = "http://tempuri.org/", wsdlLocation = "file:/home/hyperpostulate/Projects/ibb-webservices-java-client/src/main/resources/SeferGerceklesme.wsdl")
 public class SeferGerceklesme
     extends Service
 {
@@ -30,7 +30,7 @@ public class SeferGerceklesme
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/mormanli/PersonalProjects/ibb-webservices-java-client/src/main/java/org/mesutormanli/ibbwsclient/generated/iett/sefergerceklesme/SeferGerceklesme.wsdl");
+            url = new URL("file:/home/hyperpostulate/Projects/ibb-webservices-java-client/src/main/resources/SeferGerceklesme.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
