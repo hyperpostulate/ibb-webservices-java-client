@@ -1,16 +1,13 @@
 package org.mesutormanli.ibbwsclient.service;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.isbike.IsbikeServiceResponse;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled
 class IsbikeServiceTest extends BaseServiceTest {
 
     private IsbikeService isbikeService;

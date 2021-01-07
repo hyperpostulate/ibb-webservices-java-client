@@ -10,18 +10,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class IsparkService extends BaseService {
-    private static final String PARK_SERVICE_URL = "https://api.ibb.gov.tr/ispark/Park";
-    private static final String PARK_DETAY_SERVICE_URL = "https://api.ibb.gov.tr/ispark/ParkDetay";
+
+    private static final String ISPARK_SERVICE_BASE_URL = "https://api.ibb.gov.tr/ispark";
+    private static final String PARK_URL = ISPARK_SERVICE_BASE_URL + "/Park";
+    private static final String PARK_DETAY_URL = ISPARK_SERVICE_BASE_URL + "/ParkDetay";
 
     public List<Park> getPark() {
-        final String json = Unirest.get(PARK_SERVICE_URL)
+        final String json = Unirest.get(PARK_URL)
                 .asString().getBody();
         return Arrays.asList(gson.fromJson(json, Park[].class));
 
     }
 
     public ParkDetay getParkDetay(Integer parkId) {
-        final String json = Unirest.get(PARK_DETAY_SERVICE_URL)
+        final String json = Unirest.get(PARK_DETAY_URL)
                 .queryString("id", parkId)
                 .asString().getBody();
 

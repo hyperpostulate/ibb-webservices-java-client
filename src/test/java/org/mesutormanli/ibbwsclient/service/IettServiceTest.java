@@ -1,6 +1,7 @@
 package org.mesutormanli.ibbwsclient.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.iett.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
@@ -88,6 +89,7 @@ class IettServiceTest extends BaseServiceTest {
         printResult(kazaLokasyon);
     }
 
+    @Disabled
     @Test
     void getAkaryakitToplamLitre() {
         List<AkaryakitToplamLitre> akaryakitToplamLitre = iettService.getAkaryakitToplamLitre(2019, 2);
