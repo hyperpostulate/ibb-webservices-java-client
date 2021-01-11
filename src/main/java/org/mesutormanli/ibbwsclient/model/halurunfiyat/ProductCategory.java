@@ -8,27 +8,27 @@ import java.util.Objects;
 public class ProductCategory extends BaseDataModel {
 
     @SerializedName("Id")
-    private int id;
+    private Integer id;
 
     @SerializedName("HalId")
-    private int halId;
+    private Integer halId;
 
     @SerializedName("Kategori")
     private String category;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getHalId() {
+    public Integer getHalId() {
         return halId;
     }
 
-    public void setHalId(int halId) {
+    public void setHalId(Integer halId) {
         this.halId = halId;
     }
 
@@ -45,7 +45,7 @@ public class ProductCategory extends BaseDataModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductCategory that = (ProductCategory) o;
-        return id == that.id && halId == that.halId && Objects.equals(category, that.category);
+        return Objects.equals(id, that.id) && Objects.equals(halId, that.halId) && Objects.equals(category, that.category);
     }
 
     @Override

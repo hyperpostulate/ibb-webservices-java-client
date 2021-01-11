@@ -14,10 +14,10 @@ public class ProductType extends BaseDataModel {
     private String urunAd;
 
     @SerializedName("KategoriId")
-    private int categoryId;
+    private Integer categoryId;
 
     @SerializedName("HalTurId")
-    private int halTurId;
+    private Integer halTurId;
 
     public String getTabelaGId() {
         return tabelaGId;
@@ -35,19 +35,19 @@ public class ProductType extends BaseDataModel {
         this.urunAd = urunAd;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
-    public int getHalTurId() {
+    public Integer getHalTurId() {
         return halTurId;
     }
 
-    public void setHalTurId(int halTurId) {
+    public void setHalTurId(Integer halTurId) {
         this.halTurId = halTurId;
     }
 
@@ -56,7 +56,7 @@ public class ProductType extends BaseDataModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductType that = (ProductType) o;
-        return categoryId == that.categoryId && halTurId == that.halTurId && Objects.equals(tabelaGId, that.tabelaGId) && Objects.equals(urunAd, that.urunAd);
+        return Objects.equals(tabelaGId, that.tabelaGId) && Objects.equals(urunAd, that.urunAd) && Objects.equals(categoryId, that.categoryId) && Objects.equals(halTurId, that.halTurId);
     }
 
     @Override

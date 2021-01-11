@@ -16,7 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class IettService extends BaseService {
 
@@ -62,12 +61,6 @@ public class IettService extends BaseService {
         return Arrays.asList(gson.fromJson(json, Duyuru[].class));
     }
 
-    public List<Duyuru> getDuyurularWithHat(String hat) {
-        return getAllDuyurular().stream()
-                .filter(duyuru -> hat.equals(duyuru.getHat()))
-                .collect(Collectors.toList());
-    }
-
     public List<Durak> getAllDurak() {
         final String json = hatDurakGuzergahSoap.getDurakJson("");
         return Arrays.asList(gson.fromJson(json, Durak[].class));
@@ -78,29 +71,9 @@ public class IettService extends BaseService {
         return Arrays.asList(gson.fromJson(json, Durak[].class));
     }
 
-    public List<Durak> getDurakWithIlce(String ilce) {
-        return getAllDurak()
-                .stream()
-                .filter(durak -> ilce.equals(durak.getIlceAdi()))
-                .collect(Collectors.toList());
-    }
-
-    public List<Durak> getDurakWithYon(String yon) {
-        return getAllDurak()
-                .stream()
-                .filter(durak -> yon.equals(durak.getYon()))
-                .collect(Collectors.toList());
-    }
-
     public List<Garaj> getAllGaraj() {
         final String json = hatDurakGuzergahSoap.getGarajJson();
         return Arrays.asList(gson.fromJson(json, Garaj[].class));
-    }
-
-    public List<Garaj> getGarajWithGarajAdi(String garajAdi) {
-        return getAllGaraj().stream()
-                .filter(garaj -> garajAdi.equals(garaj.getGarajAdi()))
-                .collect(Collectors.toList());
     }
 
     public List<PlanlananSeferSaati> getPlanlananSeferSaatiWithHat(String hatKodu) {
@@ -111,12 +84,6 @@ public class IettService extends BaseService {
     public List<FiloAracKonum> getFiloAracKonum() {
         final String json = seferGerceklesmeSoap.getFiloAracKonumJson();
         return Arrays.asList(gson.fromJson(json, FiloAracKonum[].class));
-    }
-
-    public List<FiloAracKonum> getFiloAracKonumWithPlaka(String plaka) {
-        return getFiloAracKonum().stream()
-                .filter(filoAracKonum -> plaka.equals(filoAracKonum.getPlaka()))
-                .collect(Collectors.toList());
     }
 
     public List<KazaLokasyon> getKazaLokasyon(String tarih) {

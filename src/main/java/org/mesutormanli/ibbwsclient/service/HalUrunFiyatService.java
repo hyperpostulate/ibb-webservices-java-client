@@ -1,12 +1,10 @@
 package org.mesutormanli.ibbwsclient.service;
 
 import kong.unirest.Unirest;
-import org.mesutormanli.ibbwsclient.model.halurunfiyat.CategoriesServiceResponse;
-import org.mesutormanli.ibbwsclient.model.halurunfiyat.MarketsServiceResponse;
-import org.mesutormanli.ibbwsclient.model.halurunfiyat.MeasureTypesServiceResponse;
-import org.mesutormanli.ibbwsclient.model.halurunfiyat.ProductTypesServiceResponse;
+import org.mesutormanli.ibbwsclient.model.halurunfiyat.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HalUrunFiyatService extends BaseService {
@@ -19,6 +17,8 @@ public class HalUrunFiyatService extends BaseService {
     private static final String PRODUCT_PRICE_BY_DAY_URL = HAL_URUN_FIYAT_SERVICE_BASE_URL + "/getProductPricebyDay";
     private static final String PRODUCT_PRICE_BY_DAY_AND_MARKET_URL = HAL_URUN_FIYAT_SERVICE_BASE_URL + "/getProductPricebyDayAndMarket";
     private static final String PRODUCT_PRICE_BY_PRODUCT_ID_URL = HAL_URUN_FIYAT_SERVICE_BASE_URL + "/getProductPricebyProductId";
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public CategoriesServiceResponse getCategories() {
         final String json = Unirest.get(CATEGORIES_URL)
@@ -44,19 +44,28 @@ public class HalUrunFiyatService extends BaseService {
         return gson.fromJson(json, ProductTypesServiceResponse.class);
     }
 
-    public String getProductPriceByDay(Date day) {
-        //TODO: implement
-        return null;
+    public ProductPriceServiceResponse getProductPriceByDay(Date day) {
+        final String json = Unirest.post(PRODUCT_PRICE_BY_DAY_URL)
+                .header("Content-Type", "application/json")
+                .body("{\"item\":{\"Day\": \"" + dateFormat.format(day) + "\"}}")
+                .asString().getBody();
+        return gson.fromJson(json, ProductPriceServiceResponse.class);
     }
 
-    public String getProductPriceByDayAndMarket(Date day, int marketId) {
-        //TODO: implement
-        return null;
+    public ProductPriceServiceResponse getProductPriceByDayAndMarket(Date day, Integer marketId) {
+        final String json = Unirest.post(PRODUCT_PRICE_BY_DAY_AND_MARKET_URL)
+                .header("Content-Type", "application/json")
+                .body("{\"item\":{\"Day\": \"" + dateFormat.format(day) + "\",\"MarketId\":" + marketId + "}}")
+                .asString().getBody();
+        return gson.fromJson(json, ProductPriceServiceResponse.class);
     }
 
-    public String getProductPriceByProductId(String productId) {
-        //TODO: implement
-        return null;
+    public ProductPriceServiceResponse getProductPriceByProductId(String productId) {
+        final String json = Unirest.post(PRODUCT_PRICE_BY_PRODUCT_ID_URL)
+                .header("Content-Type", "application/json")
+                .body("{\"item\":{\"TabelaGId\": \"" + productId + "\"}}")
+                .asString().getBody();
+        return gson.fromJson(json, ProductPriceServiceResponse.class);
     }
 
 }

@@ -24,12 +24,6 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getDuyurularWithHat() {
-        final List<Duyuru> duyurularWithHat = iettService.getDuyurularWithHat("32A");
-        printResult(duyurularWithHat);
-    }
-
-    @Test
     void getAllDurak() {
         final List<Durak> durak = iettService.getAllDurak();
         printResult(durak);
@@ -42,26 +36,8 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getDurakWithIlce() {
-        final List<Durak> durak = iettService.getDurakWithIlce("Esenler");
-        printResult(durak);
-    }
-
-    @Test
-    void getDurakWithYon() {
-        final List<Durak> durak = iettService.getDurakWithYon("FENERTEPE");
-        printResult(durak);
-    }
-
-    @Test
     void getAllGaraj() {
         final List<Garaj> garaj = iettService.getAllGaraj();
-        printResult(garaj);
-    }
-
-    @Test
-    void getGarajWithGarajAdi() {
-        final List<Garaj> garaj = iettService.getGarajWithGarajAdi("AVCILARGARAJI");
         printResult(garaj);
     }
 
@@ -78,18 +54,11 @@ class IettServiceTest extends BaseServiceTest {
     }
 
     @Test
-    void getFiloAracKonumWithPlaka() {
-        final List<FiloAracKonum> filoAracKonumWithPlaka = iettService.getFiloAracKonumWithPlaka("34 NL 8220");
-        printResult(filoAracKonumWithPlaka);
-    }
-
-    @Test
     void getKazaLokasyon() {
         final List<KazaLokasyon> kazaLokasyon = iettService.getKazaLokasyon("2020-02-02");
         printResult(kazaLokasyon);
     }
 
-    @Disabled
     @Test
     void getAkaryakitToplamLitre() {
         List<AkaryakitToplamLitre> akaryakitToplamLitre = iettService.getAkaryakitToplamLitre(2019, 2);

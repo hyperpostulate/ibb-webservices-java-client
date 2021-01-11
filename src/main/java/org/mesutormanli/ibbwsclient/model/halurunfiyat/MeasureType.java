@@ -8,16 +8,16 @@ import java.util.Objects;
 public class MeasureType extends BaseDataModel {
 
     @SerializedName("Id")
-    private int id;
+    private Integer id;
 
     @SerializedName("Birim")
     private String unit;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,7 +34,7 @@ public class MeasureType extends BaseDataModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MeasureType that = (MeasureType) o;
-        return id == that.id && Objects.equals(unit, that.unit);
+        return Objects.equals(id, that.id) && Objects.equals(unit, that.unit);
     }
 
     @Override

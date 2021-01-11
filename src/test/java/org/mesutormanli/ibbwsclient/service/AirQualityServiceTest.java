@@ -29,9 +29,4 @@ class AirQualityServiceTest extends BaseServiceTest {
         printResult(airQualityData);
     }
 
-    @Test
-    void getAQIByStationName() {
-        final List<AirQualityData> airQualityData = airQualityService.getAQIByStationName("Maslak");
-        printResult(airQualityData);
-    }
 }

@@ -27,12 +27,4 @@ public class AirQualityService extends BaseService {
         return Arrays.asList(gson.fromJson(json, AirQualityData[].class));
     }
 
-    public List<AirQualityData> getAQIByStationName(String stationName) {
-        final String stationId = getAQIStations()
-                .stream()
-                .filter(station -> stationName.equals(station.getName()))
-                .findFirst().get().getId();
-
-        return getAQIByStationId(stationId);
-    }
 }

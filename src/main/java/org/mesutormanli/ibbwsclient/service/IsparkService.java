@@ -7,7 +7,6 @@ import org.mesutormanli.ibbwsclient.service.base.BaseService;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class IsparkService extends BaseService {
 
@@ -31,33 +30,4 @@ public class IsparkService extends BaseService {
 
     }
 
-    public List<ParkDetay> getAvailableParkDetayListWithIlce(String ilce) {
-        return getPark()
-                .stream()
-                .filter(park -> ilce.equals(park.getIlce()))
-                .map(Park::getParkId)
-                .map(this::getParkDetay)
-                .filter(parkDetay -> parkDetay.getBosKapasite() > 0)
-                .collect(Collectors.toList());
-    }
-
-    public List<ParkDetay> getAvailableParkDetayListWithParkTipi(String parkTipi) {
-        return getPark()
-                .stream()
-                .filter(park -> parkTipi.equals(park.getParkTipi()))
-                .map(Park::getParkId)
-                .map(this::getParkDetay)
-                .filter(parkDetay -> parkDetay.getBosKapasite() > 0)
-                .collect(Collectors.toList());
-    }
-
-    public List<ParkDetay> getAvailableParkDetayListWithIlceAndParkTipi(String ilce, String parkTipi) {
-        return getPark()
-                .stream()
-                .filter(park -> ilce.equals(park.getIlce()) && parkTipi.equals(park.getParkTipi()))
-                .map(Park::getParkId)
-                .map(this::getParkDetay)
-                .filter(parkDetay -> parkDetay.getBosKapasite() > 0)
-                .collect(Collectors.toList());
-    }
 }
