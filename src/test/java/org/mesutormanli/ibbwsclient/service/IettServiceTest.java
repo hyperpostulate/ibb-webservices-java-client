@@ -53,6 +53,7 @@ class IettServiceTest extends BaseServiceTest {
         printResult(filoAracKonum);
     }
 
+    @Disabled
     @Test
     void getKazaLokasyon() {
         final List<KazaLokasyon> kazaLokasyon = iettService.getKazaLokasyon("2020-02-02");

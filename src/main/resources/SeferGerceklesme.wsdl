@@ -17,14 +17,6 @@
                     </s:sequence>
                 </s:complexType>
             </s:element>
-            <s:element name="AuthHeader" type="tns:AuthHeader"/>
-            <s:complexType name="AuthHeader">
-                <s:sequence>
-                    <s:element maxOccurs="1" minOccurs="0" name="Username" type="s:string"/>
-                    <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
-                </s:sequence>
-                <s:anyAttribute/>
-            </s:complexType>
             <s:element name="GetFiloDurum_json">
                 <s:complexType/>
             </s:element>
@@ -546,65 +538,65 @@
         </s:schema>
     </wsdl:types>
     <wsdl:message name="GetHatOtoKonum_jsonSoapIn">
-        <wsdl:part element="tns:GetHatOtoKonum_json" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetHatOtoKonum_json" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetBozukSatih_jsonSoapIn">
-        <wsdl:part element="tns:GetBozukSatih_json" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetBozukSatih_json" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetBozukSatih_XMLSoapIn">
-        <wsdl:part element="tns:GetBozukSatih_XML" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetBozukSatih_XML" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetKazaLokasyon_XMLSoapOut">
-        <wsdl:part element="tns:GetKazaLokasyon_XMLResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetKazaLokasyon_XMLResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetFiloAracKonum_jsonSoapIn">
-        <wsdl:part element="tns:GetFiloAracKonum_json" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetFiloAracKonum_json" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetKazaLokasyon_XMLSoapIn">
-        <wsdl:part element="tns:GetKazaLokasyon_XML" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetKazaLokasyon_XML" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetHatOtoKonum_jsonSoapOut">
-        <wsdl:part element="tns:GetHatOtoKonum_jsonResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetHatOtoKonum_jsonResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetFiloAracKonum_jsonSoapOut">
-        <wsdl:part element="tns:GetFiloAracKonum_jsonResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetFiloAracKonum_jsonResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetKazaLokasyon_jsonSoapOut">
-        <wsdl:part element="tns:GetKazaLokasyon_jsonResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetKazaLokasyon_jsonResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetBozukSatih_jsonSoapOut">
-        <wsdl:part element="tns:GetBozukSatih_jsonResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetBozukSatih_jsonResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetKazaLokasyon_jsonSoapIn">
-        <wsdl:part element="tns:GetKazaLokasyon_json" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetKazaLokasyon_json" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="GetBozukSatih_XMLSoapOut">
-        <wsdl:part element="tns:GetBozukSatih_XMLResponse" name="parameters"> </wsdl:part>
+        <wsdl:part element="tns:GetBozukSatih_XMLResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:portType name="SeferGerceklesmeSoap">
         <wsdl:operation name="GetBozukSatih_XML">
-            <wsdl:input message="tns:GetBozukSatih_XMLSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetBozukSatih_XMLSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetBozukSatih_XMLSoapIn"/>
+            <wsdl:output message="tns:GetBozukSatih_XMLSoapOut"/>
         </wsdl:operation>
         <wsdl:operation name="GetBozukSatih_json">
-            <wsdl:input message="tns:GetBozukSatih_jsonSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetBozukSatih_jsonSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetBozukSatih_jsonSoapIn"/>
+            <wsdl:output message="tns:GetBozukSatih_jsonSoapOut"/>
         </wsdl:operation>
         <wsdl:operation name="GetFiloAracKonum_json">
-            <wsdl:input message="tns:GetFiloAracKonum_jsonSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetFiloAracKonum_jsonSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetFiloAracKonum_jsonSoapIn"/>
+            <wsdl:output message="tns:GetFiloAracKonum_jsonSoapOut"/>
         </wsdl:operation>
         <wsdl:operation name="GetHatOtoKonum_json">
-            <wsdl:input message="tns:GetHatOtoKonum_jsonSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetHatOtoKonum_jsonSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetHatOtoKonum_jsonSoapIn"/>
+            <wsdl:output message="tns:GetHatOtoKonum_jsonSoapOut"/>
         </wsdl:operation>
         <wsdl:operation name="GetKazaLokasyon_XML">
-            <wsdl:input message="tns:GetKazaLokasyon_XMLSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetKazaLokasyon_XMLSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetKazaLokasyon_XMLSoapIn"/>
+            <wsdl:output message="tns:GetKazaLokasyon_XMLSoapOut"/>
         </wsdl:operation>
         <wsdl:operation name="GetKazaLokasyon_json">
-            <wsdl:input message="tns:GetKazaLokasyon_jsonSoapIn"> </wsdl:input>
-            <wsdl:output message="tns:GetKazaLokasyon_jsonSoapOut"> </wsdl:output>
+            <wsdl:input message="tns:GetKazaLokasyon_jsonSoapIn"/>
+            <wsdl:output message="tns:GetKazaLokasyon_jsonSoapOut"/>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="SeferGerceklesmeSoap" type="tns:SeferGerceklesmeSoap">

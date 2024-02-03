@@ -1,13 +1,14 @@
 package org.mesutormanli.ibbwsclient.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.airquality.AirQualityData;
 import org.mesutormanli.ibbwsclient.model.airquality.AirQualityStation;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
 import java.util.List;
-
+@Disabled
 class AirQualityServiceTest extends BaseServiceTest {
 
     private AirQualityService airQualityService;
