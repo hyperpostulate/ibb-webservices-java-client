@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.isbike.IsbikeServiceResponse;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
-import java.util.Collections;
-
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class IsbikeServiceTest extends BaseServiceTest {
 
@@ -20,12 +19,15 @@ class IsbikeServiceTest extends BaseServiceTest {
     @Test
     void getAllStationStatus() {
         final IsbikeServiceResponse allStationStatus = isbikeService.getAllStationStatus();
-        printResult(Collections.singletonList(allStationStatus));
+        assertNotNull(allStationStatus);
+        assertNotNull(allStationStatus.getDataList());
+        System.out.println(allStationStatus);
     }
 
     @Test
     void getStationStatus() {
         final IsbikeServiceResponse stationStatus = isbikeService.getStationStatus(1);
-        printResult(Collections.singletonList(stationStatus));
+        assertNotNull(stationStatus);
+        System.out.println(stationStatus);
     }
 }

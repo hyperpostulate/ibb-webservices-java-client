@@ -42,6 +42,70 @@ public class IsbikeStation extends BaseDataModel {
         this.guid = guid;
     }
 
+    public String getIstasyonNo() {
+        return istasyonNo;
+    }
+
+    public void setIstasyonNo(String istasyonNo) {
+        this.istasyonNo = istasyonNo;
+    }
+
+    public String getIstasyonAdi() {
+        return istasyonAdi;
+    }
+
+    public void setIstasyonAdi(String istasyonAdi) {
+        this.istasyonAdi = istasyonAdi;
+    }
+
+    public int getAktif() {
+        return aktif;
+    }
+
+    public void setAktif(int aktif) {
+        this.aktif = aktif;
+    }
+
+    public String getBos() {
+        return bos;
+    }
+
+    public void setBos(String bos) {
+        this.bos = bos;
+    }
+
+    public String getDolu() {
+        return dolu;
+    }
+
+    public void setDolu(String dolu) {
+        this.dolu = dolu;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public String getSonBaglanti() {
+        return sonBaglanti;
+    }
+
+    public void setSonBaglanti(String sonBaglanti) {
+        this.sonBaglanti = sonBaglanti;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -25,6 +25,22 @@ public class IsbikeServiceResponse extends BaseDataModel {
         this.serviceCode = serviceCode;
     }
 
+    public String getServiceDesc() {
+        return serviceDesc;
+    }
+
+    public void setServiceDesc(String serviceDesc) {
+        this.serviceDesc = serviceDesc;
+    }
+
+    public List<IsbikeStation> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<IsbikeStation> dataList) {
+        this.dataList = dataList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

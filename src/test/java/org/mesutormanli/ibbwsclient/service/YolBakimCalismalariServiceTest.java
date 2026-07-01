@@ -21,6 +21,6 @@ class YolBakimCalismalariServiceTest extends BaseServiceTest {
     @Test
     void getRoadMaintenanceWorks() {
         final List<YolBakimData> works = yolBakimCalismalariService.getRoadMaintenanceWorks();
-        printResult(works);
+        verifyResult(works);
     }
 }

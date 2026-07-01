@@ -19,6 +19,6 @@ class SinyalizeKavsakServiceTest extends BaseServiceTest {
     @Test
     void getJunctions() {
         final List<Junction> junctions = sinyalizeKavsakService.getJunctions();
-        printResult(junctions);
+        verifyResult(junctions);
     }
 }

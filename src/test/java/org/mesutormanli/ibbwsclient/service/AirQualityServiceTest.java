@@ -8,7 +8,8 @@ import org.mesutormanli.ibbwsclient.model.airquality.AirQualityStation;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
 import java.util.List;
-@Disabled
+
+@Disabled("API endpoints are currently unavailable")
 class AirQualityServiceTest extends BaseServiceTest {
 
     private AirQualityService airQualityService;
@@ -21,13 +22,12 @@ class AirQualityServiceTest extends BaseServiceTest {
     @Test
     void getAQIStations() {
         final List<AirQualityStation> airQualityStations = airQualityService.getAQIStations();
-        printResult(airQualityStations);
+        verifyResult(airQualityStations);
     }
 
     @Test
     void getAQIByStationId() {
         final List<AirQualityData> airQualityData = airQualityService.getAQIByStationId("cb4cd1c2-b55b-484f-ac7a-505369405d00");
-        printResult(airQualityData);
+        verifyResult(airQualityData);
     }
-
 }

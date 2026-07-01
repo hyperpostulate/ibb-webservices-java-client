@@ -19,6 +19,6 @@ class IBBTrafikServiceTest extends BaseServiceTest {
     @Test
     void getTrafficIndexHistory() {
         final List<TrafficIndexData> trafficData = ibbTrafikService.getTrafficIndexHistory(1, "5M");
-        printResult(trafficData);
+        verifyResult(trafficData);
     }
 }

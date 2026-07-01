@@ -1,254 +1,121 @@
 package org.mesutormanli.ibbwsclient.service;
 
-import com.google.gson.reflect.TypeToken;
-import kong.unirest.Unirest;
+import org.mesutormanli.ibbwsclient.config.IbbClientConfig;
 import org.mesutormanli.ibbwsclient.model.metro.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class MetroIstanbulService extends BaseService {
 
-    private static final String METRO_SERVICE_BASE_URL = "https://api.ibb.gov.tr/MetroIstanbul/api/MetroMobile/V2";
-
     public List<MetroStation> getStations() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetStations")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroStation>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroStation>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_STATIONS);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroStation.class)));
     }
 
     public List<MetroLine> getLines() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetLines")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroLine>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroLine>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_LINES);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroLine.class)));
     }
 
     public List<MetroServiceStatus> getServiceStatuses() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetServiceStatuses")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroServiceStatus>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroServiceStatus>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_SERVICE_STATUSES);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroServiceStatus.class)));
     }
 
     public List<MetroRailwayGroup> getRailwayGroups() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetRailwayGroups")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroRailwayGroup>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroRailwayGroup>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_RAILWAY_GROUPS);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroRailwayGroup.class)));
     }
 
     public List<MetroDirection> getDirectionsByLineId(int lineId) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetDirectionById/" + lineId)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroDirection>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroDirection>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_DIRECTION_BY_ID + "/" + lineId);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroDirection.class)));
     }
 
     public List<MetroDirection> getDirectionsByLineIdAndStationId(int lineId, int stationId) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetDirectionsByLineIdAndStationId")
-                .header("Accept", "application/json")
-                .queryString("lineId", lineId)
-                .queryString("stationId", stationId)
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroDirection>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroDirection>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_DIRECTIONS_BY_LINE_AND_STATION + "?lineId=" + lineId + "&stationId=" + stationId);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroDirection.class)));
     }
 
     public List<MetroStation> getStationsByLineId(int lineId) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetStationById/" + lineId)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroStation>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroStation>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_STATION_BY_ID + "/" + lineId);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroStation.class)));
     }
 
     public List<MetroTicketPrice> getTicketPrices(String lang) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetTicketPrice/" + lang)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroTicketPrice>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroTicketPrice>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_TICKET_PRICE + "/" + lang);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroTicketPrice.class)));
     }
 
     public List<MetroActivity> getActivities() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetActivities")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroActivity>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroActivity>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_ACTIVITIES);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroActivity.class)));
     }
 
     public List<MetroLineProject> getLineProjects() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetLineProjects")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroLineProject>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroLineProject>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_LINE_PROJECTS);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroLineProject.class)));
     }
 
     public List<MetroFaq> getFrequentlyAskedQuestions() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/FrequentlyAskedQuestions")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroFaq>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroFaq>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_FAQ);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFaq.class)));
     }
 
     public List<MetroAnnouncement> getAnnouncements(String lang) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetAnnouncements/" + lang)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroAnnouncement>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroAnnouncement>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_ANNOUNCEMENTS + "/" + lang);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroAnnouncement.class)));
     }
 
     public List<MetroFailureType> getFailureTypes() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetFailureTypes")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroFailureType>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroFailureType>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_FAILURE_TYPES);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFailureType.class)));
     }
 
     public List<MetroTechnicalObjectType> getTechnicalObjectTypes() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetTechnicalObjectTypes")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroTechnicalObjectType>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroTechnicalObjectType>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_TECHNICAL_OBJECT_TYPES);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroTechnicalObjectType.class)));
     }
 
     public List<MetroFaultyEquipment> getFaultyEquipments() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetFaultyEquipments")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroFaultyEquipment>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroFaultyEquipment>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_FAULTY_EQUIPMENTS);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFaultyEquipment.class)));
     }
 
     public List<MetroMap> getMaps() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetMaps")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroMap>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroMap>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_MAPS);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroMap.class)));
     }
 
     public List<MetroAddress> getAddresses(String lang) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetAddresses/" + lang)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroAddress>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroAddress>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_ADDRESSES + "/" + lang);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroAddress.class)));
     }
 
     public List<MetroNews> getNews(String lang) {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetNews/" + lang)
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroNews>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroNews>> response = gson.fromJson(json, type);
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_NEWS + "/" + lang);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroNews.class)));
     }
 
     public List<MetroStationDuration> getStationBetweenTime(String requestBody) {
-        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetStationBetweenTime")
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroStationDuration>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroStationDuration>> response = gson.fromJson(json, type);
-        if (response == null || !response.isSuccess() || response.getData() == null) {
-            return java.util.Collections.emptyList();
-        }
-        return response.getData();
+        String json = executePost(IbbClientConfig.METRO_STATION_BETWEEN_TIME, requestBody);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroStationDuration.class)));
     }
 
     public List<MetroFaultyEquipmentDetail> getFaultyEquipmentDetails(String equipmentGroupName) {
-        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetFaultyEquipmentDetails")
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body("{\"EquipmentGroupName\":\"" + equipmentGroupName + "\"}")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroFaultyEquipmentDetail>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroFaultyEquipmentDetail>> response = gson.fromJson(json, type);
-        if (response == null || !response.isSuccess() || response.getData() == null) {
-            return java.util.Collections.emptyList();
-        }
-        return response.getData();
+        String body = gson.toJson(java.util.Map.of("EquipmentGroupName", equipmentGroupName));
+        String json = executePost(IbbClientConfig.METRO_FAULTY_EQUIPMENT_DETAILS, body);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFaultyEquipmentDetail.class)));
     }
 
     public List<MetroFaultType> getFaultTypes() {
-        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetFailuresTypes")
-                .header("Accept", "application/json")
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroFaultType>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroFaultType>> response = gson.fromJson(json, type);
-        if (response == null || !response.isSuccess()) {
-            return java.util.Collections.emptyList();
-        }
-        return response.getData();
+        String json = executeGet(IbbClientConfig.METRO_FAILURE_TYPES_ALT);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFaultType.class)));
     }
 
     public List<MetroTimeTable> getTimeTable(String requestBody) {
-        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetTimeTable")
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .asString().getBody();
-        Type type = new TypeToken<MetroServiceResponse<List<MetroTimeTable>>>() {
-        }.getType();
-        MetroServiceResponse<List<MetroTimeTable>> response = gson.fromJson(json, type);
-        if (response == null || !response.isSuccess() || response.getData() == null) {
-            return java.util.Collections.emptyList();
-        }
-        return response.getData();
+        String json = executePost(IbbClientConfig.METRO_TIME_TABLE, requestBody);
+        return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroTimeTable.class)));
     }
 }
