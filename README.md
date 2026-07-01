@@ -1,48 +1,65 @@
-# IBB Web Services Java Client
+# ibb-webservices-java-client
 
-Java client for IBB (Istanbul Metropolitan Municipality) public APIs at `https://data.ibb.gov.tr`. Licensed GPL-3.0.
+Java client library for Istanbul Metropolitan Municipality (IBB) open data APIs. No main class — consumed as a dependency.
 
-## Tech stack
-
-- **Java 25** (source & target, `maven-compiler-plugin` 3.12.1), **Maven** only
-- **Unirest 3.14.5** (HTTP), **Gson 2.10.1** (JSON), **JUnit Jupiter 5** (RELEASE, `maven-surefire-plugin` 3.2.5)
-- No formatter, linter, or resources directory configured
-
-## Build & test
+## Build & Test
 
 ```bash
-mvn compile        # compile sources
-mvn test           # all tests (no single-test shortcut in POM)
-mvn package        # produces target/ibbwsclient-1.0-SNAPSHOT.jar
+mvn clean test              # full build + tests
+mvn test -pl . -Dtest=MetroIstanbulServiceTest  # single test class (Surefire)
 ```
+
+Java 25 required (`pom.xml`: source/target 25). Single-module Maven project.
 
 ## CI
 
-`.github/workflows/maven.yml` — triggers on every push. Uses **`corretto` 25** (not `temurin` — match if updating). Command: `mvn -B package --file pom.xml`.
+GitHub Actions workflow (`.github/workflows/maven.yml`): runs `mvn -B package` on every push using JDK 25 (Amazon Corretto).
 
-## Project conventions
+Disabled tests are skipped automatically since they use `@Disabled` — CI passes without them.
 
-### Architecture
+## Architecture
 
-- **Library JAR** — no `main()` method
-- **Services** extend `BaseService` (provides `protected Gson gson`)
-- **Models** extend `BaseDataModel` (implements `Serializable`)
-- **Tests** extend `BaseServiceTest` (provides `printResult(List<? extends BaseDataModel>)`)
+- **9 service classes** under `org.mesutormanli.ibbwsclient.service`, each wrapping one IBB API domain (Metro, AirQuality, IETT, ISBIKE, ISPARK, Trafik, HalUrunFiyat, SinyalizeKavsak, YolBakim)
+- **`BaseService`** (`service/base/BaseService.java`) provides three HTTP primitives: `executeGet`, `executePost`, `executeSoapJson`
+- **All models** are Java `record` types with Gson `@SerializedName` for JSON mapping
+- HTTP: Unirest 3.14.5. JSON: Gson 2.10.1
 
-### HTTP & JSON patterns
+### Key patterns
+- **MetroIstanbulService**: responses wrapped in `MetroServiceResponse<T>` envelope — use `createMetroListType()` + `extractDataOrEmpty()`
+- **IettService**: SOAP over POST to legacy `.asmx` endpoints. Some endpoints require username/password passed to the constructor. Unauthenticated endpoints pass `null, null`
+- **HalUrunFiyat**: custom `*ServiceResponse` wrappers with `ResponseStatus`, `ErrorGUID`, `Message`, `Results`
+- **Isbike**: `IsbikeServiceResponse` wrapper with `serviceCode`, `serviceDesc`, `dataList`
+- **Shutdown**: call `BaseService.shutdown()` to release Unirest resources
 
-Services use Unirest (`GET` or `POST` with `.header()`, `.queryString()`, or `.body()`):
-- Deserialization varies: array via `gson.fromJson(json, ModelType[].class)`, single object via `ModelType.class`, or wrapped responses via `TypeToken` (e.g. `MetroServiceResponse<List<ModelType>>`).
-- `BaseService` constructs `new Gson()` (no custom config).
+## Testing
 
-### Testing
+All tests are **integration tests** making real HTTP calls to live IBB APIs. No mocking.
 
-- **Integration tests only** — call live `api.ibb.gov.tr` endpoints, print output. Internet required.
-- **No mocking** or test fixtures.
-- `@BeforeEach` creates the service under test.
-- `@Disabled` tests exist where endpoints are unavailable (e.g. `AirQualityServiceTest`, `IsparkServiceTest` class-level; `YolBakimCalismalariServiceTest` method level with reason `"API endpoint is blocked by WAF"`). Do not remove without verification.
+Disabled tests (live APIs currently unavailable):
+- `AirQualityServiceTest` — class-level `@Disabled`
+- `IsparkServiceTest` — class-level `@Disabled`
+- `IettServiceTest` — class-level `@Disabled` (also requires auth credentials)
+- `YolBakimCalismalariServiceTest.getOpenData()` — method-level `@Disabled` (blocked by WAF)
 
-### Code style
+`BaseServiceTest` provides `verifyResult(List<?>)` asserting non-null and non-empty.
 
-- Match existing style (IntelliJ defaults in `.idea/`, though `.idea/` is gitignored).
-- Package: `org.mesutormanli.ibbwsclient`
+## API endpoints
+
+All URLs in `config/IbbClientConfig.java`. Base domains:
+- Metro: `api.ibb.gov.tr/MetroIstanbul/api/MetroMobile/V2`
+- IETT (SOAP): `api.ibb.gov.tr/iett/.../*.asmx`
+- Air Quality: `api.ibb.gov.tr/havakalitesi/OpenDataPortalHandler`
+- Traffic: `api.ibb.gov.tr/tkmservices/api/TrafficData/v1`
+- ISBIKE: `kurumsalapi.ispark.istanbul/DebtApi/bike`
+- ISPARK: `api.ibb.gov.tr/ispark`
+- Sinyalize Kavsak: `api.ibb.gov.tr/web/api/junction`
+- Yol Bakim: `api.ibb.gov.tr/teas/api/open_data`
+- Hal Urun Fiyat: `halfiyatlaripublicdata.ibb.gov.tr/api/HalManager`
+
+## License
+
+GNU GPL v3.
+
+## Author
+
+Mesut ORMANLI (mesutormanli@gmail.com)
