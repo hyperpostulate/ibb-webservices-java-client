@@ -183,4 +183,72 @@ public class MetroIstanbulService extends BaseService {
         MetroServiceResponse<List<MetroAddress>> response = gson.fromJson(json, type);
         return response.getData();
     }
+
+    public List<MetroNews> getNews(String lang) {
+        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetNews/" + lang)
+                .header("Accept", "application/json")
+                .asString().getBody();
+        Type type = new TypeToken<MetroServiceResponse<List<MetroNews>>>() {
+        }.getType();
+        MetroServiceResponse<List<MetroNews>> response = gson.fromJson(json, type);
+        return response.getData();
+    }
+
+    public List<MetroStationDuration> getStationBetweenTime(String requestBody) {
+        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetStationBetweenTime")
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(requestBody)
+                .asString().getBody();
+        Type type = new TypeToken<MetroServiceResponse<List<MetroStationDuration>>>() {
+        }.getType();
+        MetroServiceResponse<List<MetroStationDuration>> response = gson.fromJson(json, type);
+        if (response == null || !response.isSuccess() || response.getData() == null) {
+            return java.util.Collections.emptyList();
+        }
+        return response.getData();
+    }
+
+    public List<MetroFaultyEquipmentDetail> getFaultyEquipmentDetails(String equipmentGroupName) {
+        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetFaultyEquipmentDetails")
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body("{\"EquipmentGroupName\":\"" + equipmentGroupName + "\"}")
+                .asString().getBody();
+        Type type = new TypeToken<MetroServiceResponse<List<MetroFaultyEquipmentDetail>>>() {
+        }.getType();
+        MetroServiceResponse<List<MetroFaultyEquipmentDetail>> response = gson.fromJson(json, type);
+        if (response == null || !response.isSuccess() || response.getData() == null) {
+            return java.util.Collections.emptyList();
+        }
+        return response.getData();
+    }
+
+    public List<MetroFaultType> getFaultTypes() {
+        final String json = Unirest.get(METRO_SERVICE_BASE_URL + "/GetFailuresTypes")
+                .header("Accept", "application/json")
+                .asString().getBody();
+        Type type = new TypeToken<MetroServiceResponse<List<MetroFaultType>>>() {
+        }.getType();
+        MetroServiceResponse<List<MetroFaultType>> response = gson.fromJson(json, type);
+        if (response == null || !response.isSuccess()) {
+            return java.util.Collections.emptyList();
+        }
+        return response.getData();
+    }
+
+    public List<MetroTimeTable> getTimeTable(String requestBody) {
+        final String json = Unirest.post(METRO_SERVICE_BASE_URL + "/GetTimeTable")
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(requestBody)
+                .asString().getBody();
+        Type type = new TypeToken<MetroServiceResponse<List<MetroTimeTable>>>() {
+        }.getType();
+        MetroServiceResponse<List<MetroTimeTable>> response = gson.fromJson(json, type);
+        if (response == null || !response.isSuccess() || response.getData() == null) {
+            return java.util.Collections.emptyList();
+        }
+        return response.getData();
+    }
 }

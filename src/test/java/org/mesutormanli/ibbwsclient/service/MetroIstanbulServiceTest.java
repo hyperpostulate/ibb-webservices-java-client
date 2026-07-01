@@ -100,4 +100,34 @@ class MetroIstanbulServiceTest extends BaseServiceTest {
         final List<MetroAddress> addresses = metroIstanbulService.getAddresses("TR");
         printResult(addresses);
     }
+
+    @Test
+    void getNews() {
+        final List<MetroNews> news = metroIstanbulService.getNews("TR");
+        printResult(news);
+    }
+
+    @Test
+    void getStationBetweenTime() {
+        final List<MetroStationDuration> durations = metroIstanbulService.getStationBetweenTime("{}");
+        printResult(durations);
+    }
+
+    @Test
+    void getFaultyEquipmentDetails() {
+        final List<MetroFaultyEquipmentDetail> details = metroIstanbulService.getFaultyEquipmentDetails("Yürüyen Merdiven");
+        printResult(details);
+    }
+
+    @Test
+    void getFaultTypes() {
+        final List<MetroFaultType> types = metroIstanbulService.getFaultTypes();
+        printResult(types);
+    }
+
+    @Test
+    void getTimeTable() {
+        final List<MetroTimeTable> timeTables = metroIstanbulService.getTimeTable("{}");
+        printResult(timeTables);
+    }
 }
