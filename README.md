@@ -1,2 +1,2 @@
 # ibb-webservices-java-client
-data.ibb.gov.tr adresinde yayınlanan web servislere erişim için kullanılabilecek java client.
+https://data.ibb.gov.tr/dataset?res_format=API adresinde yayınlanan web servislere erişim için kullanılabilecek java client.
