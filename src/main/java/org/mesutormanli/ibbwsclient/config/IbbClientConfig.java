@@ -70,4 +70,28 @@ public final class IbbClientConfig {
     public static final String HAL_PRODUCT_PRICE_BY_DAY = HAL_URUN_FIYAT_BASE + "/getProductPricebyDay";
     public static final String HAL_PRODUCT_PRICE_BY_DAY_AND_MARKET = HAL_URUN_FIYAT_BASE + "/getProductPricebyDayAndMarket";
     public static final String HAL_PRODUCT_PRICE_BY_PRODUCT_ID = HAL_URUN_FIYAT_BASE + "/getProductPricebyProductId";
+
+    // IETT
+    private static final String IETT_BASE = "https://api.ibb.gov.tr/iett";
+
+    // IETT Stop and Line Info (ibb.asmx)
+    public static final String IETT_IBB = IETT_BASE + "/ibb/ibb.asmx";
+
+    // IETT Line-Stop-Route (HatDurakGuzergah.asmx)
+    public static final String IETT_HAT_DURAK_GUZERGAH = IETT_BASE + "/UlasimAnaVeri/HatDurakGuzergah.asmx";
+
+    // IETT Journey and Trip Info (ibb360.asmx)
+    public static final String IETT_IBB360 = IETT_BASE + "/ibb/ibb360.asmx";
+
+    // IETT Announcements (Duyurular.asmx)
+    public static final String IETT_DUYURULAR = IETT_BASE + "/UlasimDinamikVeri/Duyurular.asmx";
+
+    // IETT Planned Trip Time (PlanlananSeferSaati.asmx)
+    public static final String IETT_PLANLANAN_SEFER_SAATI = IETT_BASE + "/UlasimAnaVeri/PlanlananSeferSaati.asmx";
+
+    // IETT Journey Realization (SeferGerceklesme.asmx)
+    public static final String IETT_SEFER_GERCEKLESME = IETT_BASE + "/FiloDurum/SeferGerceklesme.asmx";
+
+    // IETT Vehicle Features (AracOzellik.asmx)
+    public static final String IETT_ARAC_OZELLIK = IETT_BASE + "/AracAnaVeri/AracOzellik.asmx";
 }
