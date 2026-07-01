@@ -147,10 +147,10 @@ public abstract class BaseService {
     }
 
     protected <T> List<T> extractDataOrEmpty(MetroServiceResponse<List<T>> response) {
-        if (response == null || !response.isSuccess() || response.getData() == null) {
+        if (response == null || !response.success() || response.data() == null) {
             return Collections.emptyList();
         }
-        return response.getData();
+        return response.data();
     }
 
     protected <T> Type createMetroListType(Class<T> elementClass) {

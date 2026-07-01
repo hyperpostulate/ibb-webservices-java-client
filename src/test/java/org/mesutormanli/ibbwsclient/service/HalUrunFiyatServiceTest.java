@@ -25,7 +25,7 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
     void getCategories() {
         final CategoriesServiceResponse categories = halUrunFiyatService.getCategories();
         assertNotNull(categories);
-        assertTrue(categories.getResponseStatus() != null ? categories.getResponseStatus() : true);
+        assertTrue(categories.responseStatus() != null ? categories.responseStatus() : true);
         System.out.println(categories);
     }
 
@@ -33,7 +33,7 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
     void getMarkets() {
         final MarketsServiceResponse markets = halUrunFiyatService.getMarkets();
         assertNotNull(markets);
-        assertTrue(markets.getResponseStatus() != null ? markets.getResponseStatus() : true);
+        assertTrue(markets.responseStatus() != null ? markets.responseStatus() : true);
         System.out.println(markets);
     }
 
@@ -41,7 +41,7 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
     void getMeasureTypes() {
         final MeasureTypesServiceResponse measureTypes = halUrunFiyatService.getMeasureTypes();
         assertNotNull(measureTypes);
-        assertTrue(measureTypes.getResponseStatus() != null ? measureTypes.getResponseStatus() : true);
+        assertTrue(measureTypes.responseStatus() != null ? measureTypes.responseStatus() : true);
         System.out.println(measureTypes);
     }
 
@@ -49,7 +49,7 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
     void getProductTypes() {
         final ProductTypesServiceResponse productTypes = halUrunFiyatService.getProductTypes();
         assertNotNull(productTypes);
-        assertTrue(productTypes.getResponseStatus() != null ? productTypes.getResponseStatus() : true);
+        assertTrue(productTypes.responseStatus() != null ? productTypes.responseStatus() : true);
         System.out.println(productTypes);
     }
 

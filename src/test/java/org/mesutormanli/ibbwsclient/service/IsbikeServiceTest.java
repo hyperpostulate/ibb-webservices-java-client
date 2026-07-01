@@ -20,7 +20,7 @@ class IsbikeServiceTest extends BaseServiceTest {
     void getAllStationStatus() {
         final IsbikeServiceResponse allStationStatus = isbikeService.getAllStationStatus();
         assertNotNull(allStationStatus);
-        assertNotNull(allStationStatus.getDataList());
+        assertNotNull(allStationStatus.dataList());
         System.out.println(allStationStatus);
     }
 
