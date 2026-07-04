@@ -60,6 +60,74 @@ All URLs in `config/IbbClientConfig.java`. Base domains:
 
 GNU GPL v3.
 
-## Author
+## Developer
+
+Mesut ORMANLI (mesutormanli@gmail.com)
+
+---
+
+# ibb-webservices-java-client
+
+İstanbul Büyükşehir Belediyesi (İBB) açık veri API'leri için Java istemci kütüphanesi. Ana sınıf içermez — bağımlılık olarak tüketilir.
+
+## Derleme ve Test
+
+```bash
+mvn clean test              # tam derleme + testler
+mvn test -pl . -Dtest=MetroIstanbulServiceTest  # tek test sınıfı (Surefire)
+```
+
+Java 25 gereklidir (`pom.xml`: source/target 25). Tek modüllü Maven projesi.
+
+## CI
+
+GitHub Actions iş akışı (`.github/workflows/maven.yml`): her push'ta JDK 25 (Amazon Corretto) ile `mvn -B package` çalıştırır.
+
+Devre dışı bırakılan testler `@Disabled` kullanıldığı için otomatik olarak atlanır — CI onlarsız geçer.
+
+## Mimari
+
+- **9 servis sınıfı** `org.mesutormanli.ibbwsclient.service` altında, her biri bir İBB API alanını sarar (Metro, HavaKalitesi, İETT, İSBAK, İSPARK, Trafik, HalÜrünFiyat, SinyalizeKavşak, YolBakım)
+- **`BaseService`** (`service/base/BaseService.java`), üç HTTP temel işlemi sağlar: `executeGet`, `executePost`, `executeSoapJson`
+- **Tüm modeller** Java `record` türleridir ve JSON eşleme için Gson `@SerializedName` kullanır
+- HTTP: Unirest 3.14.5. JSON: Gson 2.10.1
+
+### Temel desenler
+- **MetroIstanbulService**: yanıtlar `MetroServiceResponse<T>` zarfı içinde sarılır — `createMetroListType()` + `extractDataOrEmpty()` kullanın
+- **IettService**: eski `.asmx` uç noktalarına POST üzerinden SOAP. Bazı uç noktalar kurucuya iletilen kullanıcı adı/parola gerektirir. Kimlik doğrulama gerektirmeyen uç noktalar `null, null` iletir
+- **HalUrunFiyat**: `ResponseStatus`, `ErrorGUID`, `Message`, `Results` içeren özel `*ServiceResponse` sarmalayıcıları
+- **Isbike**: `serviceCode`, `serviceDesc`, `dataList` içeren `IsbikeServiceResponse` sarmalayıcısı
+- **Kapatma**: Unirest kaynaklarını serbest bırakmak için `BaseService.shutdown()` çağırın
+
+## Test
+
+Tüm testler, canlı İBB API'lerine gerçek HTTP çağrıları yapan **entegrasyon testleridir**. Mock kullanılmaz.
+
+Devre dışı bırakılan testler (şu anda kullanılamayan canlı API'ler):
+- `AirQualityServiceTest` — sınıf düzeyinde `@Disabled`
+- `IsparkServiceTest` — sınıf düzeyinde `@Disabled`
+- `IettServiceTest` — sınıf düzeyinde `@Disabled` (ayrıca kimlik bilgileri gerektirir)
+- `YolBakimCalismalariServiceTest.getOpenData()` — metot düzeyinde `@Disabled` (WAF tarafından engellenir)
+
+`BaseServiceTest`, null olmama ve boş olmama durumunu kontrol eden `verifyResult(List<?>)` sağlar.
+
+## API uç noktaları
+
+Tüm URL'ler `config/IbbClientConfig.java` içindedir. Temel alan adları:
+- Metro: `api.ibb.gov.tr/MetroIstanbul/api/MetroMobile/V2`
+- İETT (SOAP): `api.ibb.gov.tr/iett/.../*.asmx`
+- Hava Kalitesi: `api.ibb.gov.tr/havakalitesi/OpenDataPortalHandler`
+- Trafik: `api.ibb.gov.tr/tkmservices/api/TrafficData/v1`
+- İSBAK: `kurumsalapi.ispark.istanbul/DebtApi/bike`
+- İSPARK: `api.ibb.gov.tr/ispark`
+- Sinyalize Kavşak: `api.ibb.gov.tr/web/api/junction`
+- Yol Bakım: `api.ibb.gov.tr/teas/api/open_data`
+- Hal Ürün Fiyat: `halfiyatlaripublicdata.ibb.gov.tr/api/HalManager`
+
+## Lisans
+
+GNU GPL v3.
+
+## Geliştirici
 
 Mesut ORMANLI (mesutormanli@gmail.com)
