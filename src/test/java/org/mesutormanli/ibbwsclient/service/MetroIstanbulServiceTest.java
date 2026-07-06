@@ -117,7 +117,7 @@ class MetroIstanbulServiceTest extends BaseServiceTest {
 
     @Test
     void getFaultyEquipmentDetails() {
-        final List<MetroFaultyEquipmentDetail> details = metroIstanbulService.getFaultyEquipmentDetails("Yürüyen Merdiven");
+        final List<MetroFaultyEquipmentDetail> details = metroIstanbulService.getFaultyEquipmentDetails(                "Yürüyen Merdiven");
         verifyResult(details);
     }
 

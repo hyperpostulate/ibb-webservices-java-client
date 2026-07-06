@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mesutormanli.ibbwsclient.model.halurunfiyat.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseServiceTest;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,48 +21,48 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
 
     @Test
     void getCategories() {
-        final CategoriesServiceResponse categories = halUrunFiyatService.getCategories();
+        final HalServiceResponse<ProductCategory> categories = halUrunFiyatService.getCategories();
         assertNotNull(categories);
-        assertTrue(categories.responseStatus() != null ? categories.responseStatus() : true);
+        assertTrue(categories.results() != null && !categories.results().isEmpty());
         System.out.println(categories);
     }
 
     @Test
     void getMarkets() {
-        final MarketsServiceResponse markets = halUrunFiyatService.getMarkets();
+        final HalServiceResponse<Market> markets = halUrunFiyatService.getMarkets();
         assertNotNull(markets);
-        assertTrue(markets.responseStatus() != null ? markets.responseStatus() : true);
+        assertTrue(markets.results() != null && !markets.results().isEmpty());
         System.out.println(markets);
     }
 
     @Test
     void getMeasureTypes() {
-        final MeasureTypesServiceResponse measureTypes = halUrunFiyatService.getMeasureTypes();
+        final HalServiceResponse<MeasureType> measureTypes = halUrunFiyatService.getMeasureTypes();
         assertNotNull(measureTypes);
-        assertTrue(measureTypes.responseStatus() != null ? measureTypes.responseStatus() : true);
+        assertTrue(measureTypes.results() != null && !measureTypes.results().isEmpty());
         System.out.println(measureTypes);
     }
 
     @Test
     void getProductTypes() {
-        final ProductTypesServiceResponse productTypes = halUrunFiyatService.getProductTypes();
+        final HalServiceResponse<ProductType> productTypes = halUrunFiyatService.getProductTypes();
         assertNotNull(productTypes);
-        assertTrue(productTypes.responseStatus() != null ? productTypes.responseStatus() : true);
+        assertTrue(productTypes.results() != null && !productTypes.results().isEmpty());
         System.out.println(productTypes);
     }
 
     @Test
     void getProductPriceByDay() {
-        final Date day = Date.from(Instant.now().minus(Duration.ofDays(1L)));
-        final ProductPriceServiceResponse products = halUrunFiyatService.getProductPriceByDay(day);
+        final LocalDate day = LocalDate.now().minusDays(1);
+        final HalServiceResponse<ProductPrice> products = halUrunFiyatService.getProductPriceByDay(day);
         assertNotNull(products);
         System.out.println(products);
     }
 
     @Test
     void getProductPriceByDayAndMarket() {
-        final Date day = Date.from(Instant.now().minus(Duration.ofDays(1L)));
-        final ProductPriceServiceResponse products = halUrunFiyatService.getProductPriceByDayAndMarket(day, 1);
+        final LocalDate day = LocalDate.now().minusDays(1);
+        final HalServiceResponse<ProductPrice> products = halUrunFiyatService.getProductPriceByDayAndMarket(day, 1);
         assertNotNull(products);
         System.out.println(products);
     }
@@ -72,7 +70,7 @@ class HalUrunFiyatServiceTest extends BaseServiceTest {
     @Test
     void getProductPriceByProductId() {
         final String productId = "433e77c9-1d4d-4cb5-a817-2ece82eb9bf9";
-        final ProductPriceServiceResponse products = halUrunFiyatService.getProductPriceByProductId(productId);
+        final HalServiceResponse<ProductPrice> products = halUrunFiyatService.getProductPriceByProductId(productId);
         assertNotNull(products);
         System.out.println(products);
     }

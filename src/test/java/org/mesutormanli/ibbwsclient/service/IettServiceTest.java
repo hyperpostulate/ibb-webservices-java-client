@@ -17,7 +17,13 @@ class IettServiceTest extends BaseServiceTest {
 
     @BeforeEach
     void setUp() {
-        iettService = new IettService();
+        String username = System.getenv("IETT_USERNAME");
+        String password = System.getenv("IETT_PASSWORD");
+        if (username != null && password != null) {
+            iettService = new IettService(username, password);
+        } else {
+            iettService = new IettService();
+        }
     }
 
     @Test
@@ -28,11 +34,6 @@ class IettServiceTest extends BaseServiceTest {
 
     @Test
     void getLine() {
-        final String username = System.getenv("IETT_USERNAME");
-        final String password = System.getenv("IETT_PASSWORD");
-        if (username != null && password != null) {
-            iettService = new IettService(username, password);
-        }
         final List<IettLine> lines = iettService.getLine("35");
         assertNotNull(lines);
         System.out.println(lines);
@@ -40,11 +41,6 @@ class IettServiceTest extends BaseServiceTest {
 
     @Test
     void getStop() {
-        final String username = System.getenv("IETT_USERNAME");
-        final String password = System.getenv("IETT_PASSWORD");
-        if (username != null && password != null) {
-            iettService = new IettService(username, password);
-        }
         final List<IettStop> stops = iettService.getStop("123");
         assertNotNull(stops);
         System.out.println(stops);

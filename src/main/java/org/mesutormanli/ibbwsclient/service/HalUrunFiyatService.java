@@ -1,55 +1,81 @@
 package org.mesutormanli.ibbwsclient.service;
 
+import com.google.gson.reflect.TypeToken;
 import org.mesutormanli.ibbwsclient.config.IbbClientConfig;
 import org.mesutormanli.ibbwsclient.model.halurunfiyat.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
+import org.mesutormanli.ibbwsclient.util.JsonUtils;
 
-import java.time.ZoneId;
+import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HalUrunFiyatService extends BaseService {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public CategoriesServiceResponse getCategories() {
+    private <T> HalServiceResponse<T> deserializeHalResponse(String json, Class<T> elementClass) {
+        Type type = TypeToken.getParameterized(HalServiceResponse.class, elementClass).getType();
+        return JsonUtils.deserializeObject(json, type);
+    }
+
+    public HalServiceResponse<ProductCategory> getCategories() {
         String json = executeGet(IbbClientConfig.HAL_CATEGORIES);
-        return deserializeObject(json, CategoriesServiceResponse.class);
+        return deserializeHalResponse(json, ProductCategory.class);
     }
 
-    public MarketsServiceResponse getMarkets() {
+    public HalServiceResponse<Market> getMarkets() {
         String json = executeGet(IbbClientConfig.HAL_MARKETS);
-        return deserializeObject(json, MarketsServiceResponse.class);
+        return deserializeHalResponse(json, Market.class);
     }
 
-    public MeasureTypesServiceResponse getMeasureTypes() {
+    public HalServiceResponse<MeasureType> getMeasureTypes() {
         String json = executeGet(IbbClientConfig.HAL_MEASURE_TYPES);
-        return deserializeObject(json, MeasureTypesServiceResponse.class);
+        return deserializeHalResponse(json, MeasureType.class);
     }
 
-    public ProductTypesServiceResponse getProductTypes() {
+    public HalServiceResponse<ProductType> getProductTypes() {
         String json = executeGet(IbbClientConfig.HAL_PRODUCT_TYPES);
-        return deserializeObject(json, ProductTypesServiceResponse.class);
+        return deserializeHalResponse(json, ProductType.class);
     }
 
-    public ProductPriceServiceResponse getProductPriceByDay(Date day) {
-        String dateStr = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DATE_FORMATTER);
-        String body = gson.toJson(Map.of("item", Map.of("Day", dateStr)));
-        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_DAY, body);
-        return deserializeObject(json, ProductPriceServiceResponse.class);
+    public HalServiceResponse<ProductPrice> getProductPriceByDay(LocalDate day) {
+        if (day == null) {
+            throw new IllegalArgumentException("day must not be null");
+        }
+        String dateStr = day.format(DATE_FORMATTER);
+        var item = new HashMap<String, String>();
+        item.put("Day", dateStr);
+        var body = Map.of("item", item);
+        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_DAY, JsonUtils.serialize(body));
+        return deserializeHalResponse(json, ProductPrice.class);
     }
 
-    public ProductPriceServiceResponse getProductPriceByDayAndMarket(Date day, Integer marketId) {
-        String dateStr = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DATE_FORMATTER);
-        String body = gson.toJson(Map.of("item", Map.of("Day", dateStr, "MarketId", marketId)));
-        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_DAY_AND_MARKET, body);
-        return deserializeObject(json, ProductPriceServiceResponse.class);
+    public HalServiceResponse<ProductPrice> getProductPriceByDayAndMarket(LocalDate day, Integer marketId) {
+        if (day == null) {
+            throw new IllegalArgumentException("day must not be null");
+        }
+        String dateStr = day.format(DATE_FORMATTER);
+        var item = new HashMap<String, Object>();
+        item.put("Day", dateStr);
+        if (marketId != null) {
+            item.put("MarketId", marketId);
+        }
+        var body = Map.of("item", item);
+        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_DAY_AND_MARKET, JsonUtils.serialize(body));
+        return deserializeHalResponse(json, ProductPrice.class);
     }
 
-    public ProductPriceServiceResponse getProductPriceByProductId(String productId) {
-        String body = gson.toJson(Map.of("item", Map.of("TabelaGId", productId)));
-        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_PRODUCT_ID, body);
-        return deserializeObject(json, ProductPriceServiceResponse.class);
+    public HalServiceResponse<ProductPrice> getProductPriceByProductId(String productId) {
+        if (productId == null) {
+            throw new IllegalArgumentException("productId must not be null");
+        }
+        var item = new HashMap<String, String>();
+        item.put("TabelaGId", productId);
+        var body = Map.of("item", item);
+        String json = executePost(IbbClientConfig.HAL_PRODUCT_PRICE_BY_PRODUCT_ID, JsonUtils.serialize(body));
+        return deserializeHalResponse(json, ProductPrice.class);
     }
 }

@@ -1,12 +1,32 @@
 package org.mesutormanli.ibbwsclient.service;
 
+import com.google.gson.reflect.TypeToken;
 import org.mesutormanli.ibbwsclient.config.IbbClientConfig;
 import org.mesutormanli.ibbwsclient.model.metro.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
+import org.mesutormanli.ibbwsclient.util.JsonUtils;
 
+import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 public class MetroIstanbulService extends BaseService {
+
+    private <T> MetroServiceResponse<T> deserializeMetroResponse(String json, Type type) {
+        return JsonUtils.deserializeObject(json, type);
+    }
+
+    private <T> List<T> extractDataOrEmpty(MetroServiceResponse<List<T>> response) {
+        if (response == null || !response.success() || response.data() == null) {
+            return Collections.emptyList();
+        }
+        return response.data();
+    }
+
+    private <T> Type createMetroListType(Class<T> elementClass) {
+        return TypeToken.getParameterized(MetroServiceResponse.class,
+                TypeToken.getParameterized(List.class, elementClass).getType()).getType();
+    }
 
     public List<MetroStation> getStations() {
         String json = executeGet(IbbClientConfig.METRO_STATIONS);
@@ -39,7 +59,7 @@ public class MetroIstanbulService extends BaseService {
     }
 
     public List<MetroStation> getStationsByLineId(int lineId) {
-        String json = executeGet(IbbClientConfig.METRO_STATION_BY_ID + "/" + lineId);
+        String json = executeGet(IbbClientConfig.METRO_STATIONS_BY_LINE_ID + "/" + lineId);
         return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroStation.class)));
     }
 
@@ -104,7 +124,7 @@ public class MetroIstanbulService extends BaseService {
     }
 
     public List<MetroFaultyEquipmentDetail> getFaultyEquipmentDetails(String equipmentGroupName) {
-        String body = gson.toJson(java.util.Map.of("EquipmentGroupName", equipmentGroupName));
+        String body = JsonUtils.serialize(java.util.Map.of("EquipmentGroupName", equipmentGroupName));
         String json = executePost(IbbClientConfig.METRO_FAULTY_EQUIPMENT_DETAILS, body);
         return extractDataOrEmpty(deserializeMetroResponse(json, createMetroListType(MetroFaultyEquipmentDetail.class)));
     }

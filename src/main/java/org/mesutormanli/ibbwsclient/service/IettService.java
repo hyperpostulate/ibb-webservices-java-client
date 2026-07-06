@@ -1,8 +1,10 @@
 package org.mesutormanli.ibbwsclient.service;
 
 import org.mesutormanli.ibbwsclient.config.IbbClientConfig;
+import org.mesutormanli.ibbwsclient.exception.IbbClientException;
 import org.mesutormanli.ibbwsclient.model.iett.*;
 import org.mesutormanli.ibbwsclient.service.base.BaseService;
+import org.mesutormanli.ibbwsclient.util.JsonUtils;
 
 import java.util.List;
 
@@ -10,6 +12,30 @@ public class IettService extends BaseService {
 
     private final String username;
     private final String password;
+
+    private static final String METHOD_DURAK_DETAY = "DurakDetay_GYY";
+    private static final String METHOD_DURAK_DETAY_W_YON = "DurakDetay_GYY_wYonAdi";
+    private static final String METHOD_HAT_SERVISI = "HatServisi_GYY";
+    private static final String METHOD_PLAKA_SERVISI = "IETTPlakaServisi_Json";
+    private static final String METHOD_GET_STOP_LINES = "GetStopLines_json";
+    private static final String METHOD_GET_HAT = "GetHat_json";
+    private static final String METHOD_GET_DURAK = "GetDurak_json";
+    private static final String METHOD_GET_GARAJ = "GetGaraj_json";
+    private static final String METHOD_ARSIV_GOREV = "GetIettArsivGorev_json";
+    private static final String METHOD_YOLCULUK_HAT = "GetIettYolculukHat_json";
+    private static final String METHOD_DUYURULAR = "GetDuyurular_json";
+    private static final String METHOD_PLANLANAN_SEFER = "GetPlanlananSeferSaati_json";
+    private static final String METHOD_PLANLANAN_SEFER_ARA_DURAK = "GetPlanlananSeferSaatiAraDurak_json";
+    private static final String METHOD_METROBUS_FREKANS = "GetMetobusFrekans_json";
+    private static final String METHOD_METROBUS_ILK_SON_SEFER = "GetMetobusFrekansIlkSonSefer_json";
+    private static final String METHOD_FILO_DURUM = "GetFiloDurum_json";
+    private static final String METHOD_PLANA_UYUM = "GetPlanaUyum_json";
+    private static final String METHOD_KAZA_LOKASYON = "GetKazaLokasyon_json";
+    private static final String METHOD_YOLCU_BILGILENDIRME = "GetYolcuBilgilendirme_json";
+    private static final String METHOD_FILO_ARAC_KONUM = "GetFiloAracKonum_json";
+    private static final String METHOD_HAT_OTO_KONUM = "GetHatOtoKonum_json";
+    private static final String METHOD_ARAC_OZELLIKLERI = "GetAracOzellikleriIETT_json";
+    private static final String METHOD_AKAR_YAKIT = "GetAkarYakitToplamLitre_json";
 
     public IettService() {
         this(null, null);
@@ -20,141 +46,144 @@ public class IettService extends BaseService {
         this.password = password;
     }
 
-    // ========== ibb.asmx - Stop and Line Info (requires auth) ==========
-
-    public String getStopDetailsByLine(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_IBB, "DurakDetay_GYY", username, password,
-                "hat_kodu", hatKodu);
-        return json;
+    private void requireAuth() {
+        if (username == null || password == null) {
+            throw new IbbClientException("This IETT endpoint requires authentication. Provide username and password via constructor.");
+        }
     }
 
-    public String getStopDetailsByLineWithDirection(String hatKodu) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB, "DurakDetay_GYY_wYonAdi", username, password,
-                "hat_kodu", hatKodu);
+    public List<IettStopDetail> getStopDetailsByLine(String hatKodu) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB, METHOD_DURAK_DETAY, username, password, "hat_kodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettStopDetail[].class);
     }
 
-    public String getLineServiceInfo(String hatKodu) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB, "HatServisi_GYY", username, password,
-                "hat_kodu", hatKodu);
+    public List<IettStopDetail> getStopDetailsByLineWithDirection(String hatKodu) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB, METHOD_DURAK_DETAY_W_YON, username, password, "hat_kodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettStopDetail[].class);
     }
 
-    public String getVehiclePlate(String kapiNo) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB, "IETTPlakaServisi_Json", username, password,
-                "KapiNo", kapiNo);
+    public List<IettLineServiceInfo> getLineServiceInfo(String hatKodu) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB, METHOD_HAT_SERVISI, username, password, "hat_kodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettLineServiceInfo[].class);
     }
 
-    public String getStopLines(String stopCode) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB, "GetStopLines_json", username, password,
-                "stopCode", stopCode);
+    public List<IettVehiclePlate> getVehiclePlate(String kapiNo) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB, METHOD_PLAKA_SERVISI, username, password, "KapiNo", kapiNo);
+        return JsonUtils.deserializeArray(json, IettVehiclePlate[].class);
     }
 
-    // ========== HatDurakGuzergah.asmx - Line-Stop-Route (requires auth) ==========
+    public List<IettStopLine> getStopLines(String stopCode) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB, METHOD_GET_STOP_LINES, username, password, "stopCode", stopCode);
+        return JsonUtils.deserializeArray(json, IettStopLine[].class);
+    }
 
     public List<IettLine> getLine(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, "GetHat_json", username, password,
-                "HatKodu", hatKodu);
-        return deserializeArray(json, IettLine[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, METHOD_GET_HAT, username, password, "HatKodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettLine[].class);
     }
 
     public List<IettStop> getStop(String durakKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, "GetDurak_json", username, password,
-                "DurakKodu", durakKodu);
-        return deserializeArray(json, IettStop[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, METHOD_GET_DURAK, username, password, "DurakKodu", durakKodu);
+        return JsonUtils.deserializeArray(json, IettStop[].class);
     }
 
     public List<IettGarage> getGarages() {
-        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, "GetGaraj_json", username, password);
-        return deserializeArray(json, IettGarage[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_HAT_DURAK_GUZERGAH, METHOD_GET_GARAJ, username, password);
+        return JsonUtils.deserializeArray(json, IettGarage[].class);
     }
 
-    // ========== ibb360.asmx - Journey and Trip Info (no auth needed) ==========
-
-    public String getArchivedTrips(String tarih) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB360, "GetIettArsivGorev_json", null, null,
-                "Tarih", tarih);
+    public List<IettArchivedTrip> getArchivedTrips(String tarih) {
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB360, METHOD_ARSIV_GOREV, null, null, "Tarih", tarih);
+        return JsonUtils.deserializeArray(json, IettArchivedTrip[].class);
     }
 
-    public String getJourneyByLine(String tarih) {
-        return executeSoapJson(IbbClientConfig.IETT_IBB360, "GetIettYolculukHat_json", null, null,
-                "Tarih", tarih);
+    public List<IettJourney> getJourneyByLine(String tarih) {
+        String json = executeSoapJson(IbbClientConfig.IETT_IBB360, METHOD_YOLCULUK_HAT, null, null, "Tarih", tarih);
+        return JsonUtils.deserializeArray(json, IettJourney[].class);
     }
-
-    // ========== Duyurular.asmx - Announcements (no auth needed) ==========
 
     public List<IettAnnouncement> getAnnouncements() {
-        String json = executeSoapJson(IbbClientConfig.IETT_DUYURULAR, "GetDuyurular_json", null, null);
-        return deserializeArray(json, IettAnnouncement[].class);
+        String json = executeSoapJson(IbbClientConfig.IETT_DUYURULAR, METHOD_DUYURULAR, null, null);
+        return JsonUtils.deserializeArray(json, IettAnnouncement[].class);
     }
 
-    // ========== PlanlananSeferSaati.asmx - Planned Trip Time (requires auth) ==========
-
     public List<IettPlannedTrip> getPlannedTripTimes(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, "GetPlanlananSeferSaati_json", username, password,
-                "HatKodu", hatKodu);
-        return deserializeArray(json, IettPlannedTrip[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, METHOD_PLANLANAN_SEFER, username, password, "HatKodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettPlannedTrip[].class);
     }
 
     public List<IettPlannedTrip> getPlannedTripTimesByIntermediateStop(String durakKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, "GetPlanlananSeferSaatiAraDurak_json", username, password,
-                "DurakKodu", durakKodu);
-        return deserializeArray(json, IettPlannedTrip[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, METHOD_PLANLANAN_SEFER_ARA_DURAK, username, password, "DurakKodu", durakKodu);
+        return JsonUtils.deserializeArray(json, IettPlannedTrip[].class);
     }
 
     public List<IettMetrobusFrequency> getMetrobusFrequency(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, "GetMetobusFrekans_json", username, password,
-                "HatKodu", hatKodu);
-        return deserializeArray(json, IettMetrobusFrequency[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, METHOD_METROBUS_FREKANS, username, password, "HatKodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettMetrobusFrequency[].class);
     }
 
     public List<IettMetrobusFrequency> getMetrobusFirstLastTrip(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, "GetMetobusFrekansIlkSonSefer_json", username, password,
-                "HatKodu", hatKodu);
-        return deserializeArray(json, IettMetrobusFrequency[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_PLANLANAN_SEFER_SAATI, METHOD_METROBUS_ILK_SON_SEFER, username, password, "HatKodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettMetrobusFrequency[].class);
     }
 
-    // ========== SeferGerceklesme.asmx - Journey Realization (requires auth) ==========
-
     public List<IettFleetData> getFleetStatus() {
-        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetFiloDurum_json", username, password);
-        return deserializeArray(json, IettFleetData[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_FILO_DURUM, username, password);
+        return JsonUtils.deserializeArray(json, IettFleetData[].class);
     }
 
     public List<IettFleetData> getPlanCompliance() {
-        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetPlanaUyum_json", username, password);
-        return deserializeArray(json, IettFleetData[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_PLANA_UYUM, username, password);
+        return JsonUtils.deserializeArray(json, IettFleetData[].class);
     }
 
-    public String getAccidentsByDate(String tarih) {
-        return executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetKazaLokasyon_json", username, password,
-                "Tarih", tarih);
+    public List<IettAccidentLocation> getAccidentsByDate(String tarih) {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_KAZA_LOKASYON, username, password, "Tarih", tarih);
+        return JsonUtils.deserializeArray(json, IettAccidentLocation[].class);
     }
 
-    public String getPassengerInformation() {
-        return executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetYolcuBilgilendirme_json", username, password);
+    public List<IettPassengerInfo> getPassengerInformation() {
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_YOLCU_BILGILENDIRME, username, password);
+        return JsonUtils.deserializeArray(json, IettPassengerInfo[].class);
     }
 
     public List<IettVehicleLocation> getFleetVehicleLocations() {
-        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetFiloAracKonum_json", username, password);
-        return deserializeArray(json, IettVehicleLocation[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_FILO_ARAC_KONUM, username, password);
+        return JsonUtils.deserializeArray(json, IettVehicleLocation[].class);
     }
 
     public List<IettVehicleLocation> getVehicleLocationsByLine(String hatKodu) {
-        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, "GetHatOtoKonum_json", username, password,
-                "HatKodu", hatKodu);
-        return deserializeArray(json, IettVehicleLocation[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_SEFER_GERCEKLESME, METHOD_HAT_OTO_KONUM, username, password, "HatKodu", hatKodu);
+        return JsonUtils.deserializeArray(json, IettVehicleLocation[].class);
     }
 
-    // ========== AracOzellik.asmx - Vehicle Features (requires auth) ==========
-
     public List<IettVehicleFeature> getVehicleFeatures(String kapiNo) {
-        String json = executeSoapJson(IbbClientConfig.IETT_ARAC_OZELLIK, "GetAracOzellikleriIETT_json", username, password,
-                "KapiNo", kapiNo);
-        return deserializeArray(json, IettVehicleFeature[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_ARAC_OZELLIK, METHOD_ARAC_OZELLIKLERI, username, password, "KapiNo", kapiNo);
+        return JsonUtils.deserializeArray(json, IettVehicleFeature[].class);
     }
 
     public List<IettFuelConsumption> getTotalFuelConsumption(int yil, int ay) {
-        String json = executeSoapJson(IbbClientConfig.IETT_ARAC_OZELLIK, "GetAkarYakitToplamLitre_json", username, password,
-                "Yil", String.valueOf(yil), "Ay", String.valueOf(ay));
-        return deserializeArray(json, IettFuelConsumption[].class);
+        requireAuth();
+        String json = executeSoapJson(IbbClientConfig.IETT_ARAC_OZELLIK, METHOD_AKAR_YAKIT, username, password, "Yil", String.valueOf(yil), "Ay", String.valueOf(ay));
+        return JsonUtils.deserializeArray(json, IettFuelConsumption[].class);
     }
 }

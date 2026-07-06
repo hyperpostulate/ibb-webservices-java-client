@@ -14,7 +14,7 @@ public final class IbbClientConfig {
     public static final String METRO_RAILWAY_GROUPS = METRO_BASE + "/GetRailwayGroups";
     public static final String METRO_DIRECTION_BY_ID = METRO_BASE + "/GetDirectionById";
     public static final String METRO_DIRECTIONS_BY_LINE_AND_STATION = METRO_BASE + "/GetDirectionsByLineIdAndStationId";
-    public static final String METRO_STATION_BY_ID = METRO_BASE + "/GetStationById";
+    public static final String METRO_STATIONS_BY_LINE_ID = METRO_BASE + "/GetStationById";
     public static final String METRO_TICKET_PRICE = METRO_BASE + "/GetTicketPrice";
     public static final String METRO_ACTIVITIES = METRO_BASE + "/GetActivities";
     public static final String METRO_LINE_PROJECTS = METRO_BASE + "/GetLineProjects";
@@ -55,10 +55,12 @@ public final class IbbClientConfig {
     public static final String ISPARK_PARK_DETAY = ISPARK_BASE + "/ParkDetay";
 
     // Sinyalize Kavsak
-    public static final String JUNCTION = "https://api.ibb.gov.tr/web/api/junction";
+    private static final String JUNCTION_BASE = "https://api.ibb.gov.tr/web/api/junction";
+    public static final String JUNCTION = JUNCTION_BASE;
 
     // Yol Bakim
-    public static final String YOL_BAKIM = "https://api.ibb.gov.tr/teas/api/open_data";
+    private static final String YOL_BAKIM_BASE = "https://api.ibb.gov.tr/teas/api/open_data";
+    public static final String YOL_BAKIM = YOL_BAKIM_BASE;
 
     // Hal Urun Fiyat
     private static final String HAL_URUN_FIYAT_BASE = "https://halfiyatlaripublicdata.ibb.gov.tr/api/HalManager";
