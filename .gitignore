@@ -213,3 +213,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# ---AGENT INSTRUCTIONS---
+AGENTS.md
