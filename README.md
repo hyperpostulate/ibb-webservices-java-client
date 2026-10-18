@@ -368,7 +368,6 @@ All tests are **integration tests** that make real HTTP calls to live IBB APIs. 
 ### Passing Tests
 
 - `MetroIstanbulServiceTest`
-- `IsbikeServiceTest`
 - `IBBTrafikServiceTest`
 - `HalUrunFiyatServiceTest`
 - `SinyalizeKavsakServiceTest`
@@ -381,6 +380,7 @@ All tests are **integration tests** that make real HTTP calls to live IBB APIs. 
 | `IsparkServiceTest` | Live API currently unavailable |
 | `IettServiceTest` | Requires auth credentials + API unavailable |
 | `YolBakimCalismalariServiceTest.getRoadMaintenanceWorks()` | Blocked by WAF |
+| `IsbikeServiceTest` | API host unreachable from CI runners |
 
 ### Running Tests
 
@@ -820,7 +820,6 @@ Tüm testler **entegrasyon testleridir** ve canlı İBB API'lerine gerçek HTTP 
 ### Çalışan Testler
 
 - `MetroIstanbulServiceTest`
-- `IsbikeServiceTest`
 - `IBBTrafikServiceTest`
 - `HalUrunFiyatServiceTest`
 - `SinyalizeKavsakServiceTest`
@@ -833,6 +832,7 @@ Tüm testler **entegrasyon testleridir** ve canlı İBB API'lerine gerçek HTTP 
 | `IsparkServiceTest` | Canlı API şu anda kullanılamıyor |
 | `IettServiceTest` | Kimlik bilgileri gerektirir + API kullanılamıyor |
 | `YolBakimCalismalariServiceTest.getRoadMaintenanceWorks()` | WAF tarafından engellenir |
+| `IsbikeServiceTest` | API sunucusuna CI koşucularından erişilemiyor |
 
 ### Test Çalıştırma
 
