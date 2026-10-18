@@ -1,7 +1,7 @@
 # ibb-webservices-java-client
 
 [![Java CI](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml/badge.svg)](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Java client library for Istanbul Metropolitan Municipality (IBB) open data APIs. No main class — consumed as a dependency.
 
@@ -425,7 +425,7 @@ try {
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
 
 ---
 
@@ -453,7 +453,7 @@ This project is licensed under the GNU General Public License v3.0. See [LICENSE
 # ibb-webservices-java-client
 
 [![Java CI](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml/badge.svg)](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 İstanbul Büyükşehir Belediyesi (İBB) açık veri API'leri için Java istemci kütüphanesi. Ana sınıf içermez — bağımlılık olarak tüketilir.
 
@@ -877,7 +877,7 @@ try {
 
 ## Lisans
 
-Bu proje GNU General Public License v3.0 altında lisanslanmıştır. Detaylı bilgi için [LICENSE](LICENSE) dosyasına bakın.
+Bu proje Apache License 2.0 altında lisanslanmıştır. Detaylı bilgi için [LICENSE](LICENSE) dosyasına bakın.
 
 ---
 
