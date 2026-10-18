@@ -334,12 +334,17 @@ HalServiceResponse<ProductPrice> prices = halService.getProductPriceByDay(LocalD
 
 ### Releasing Resources
 
-```java
-import org.mesutormanli.ibbwsclient.service.base.BaseService;
+Each service instance owns an isolated HTTP client. Release it with `close()`, e.g. via try-with-resources:
 
-// Release Unirest resources on application shutdown
-BaseService.shutdown();
+```java
+import org.mesutormanli.ibbwsclient.service.MetroIstanbulService;
+
+try (MetroIstanbulService metro = new MetroIstanbulService()) {
+    List<MetroStation> stations = metro.getStations();
+}
 ```
+
+`BaseService.shutdown()` is deprecated: it shuts down the process-global Unirest client and may disrupt other Unirest users in the same JVM. Closing one service instance never affects other instances.
 
 ---
 
@@ -363,7 +368,7 @@ All URLs are defined in `config/IbbClientConfig.java`.
 
 ## Testing
 
-All tests are **integration tests** that make real HTTP calls to live IBB APIs. No mocking is used.
+Most tests are **integration tests** that make real HTTP calls to live IBB APIs. In addition, offline unit tests (`SoapUtilsTest`, `JsonUtilsTest`, `BaseServiceHttpHandlingTest`) run against a local HTTP server and require no external network.
 
 ### Passing Tests
 
@@ -381,6 +386,9 @@ All tests are **integration tests** that make real HTTP calls to live IBB APIs. 
 | `IettServiceTest` | Requires auth credentials + API unavailable |
 | `YolBakimCalismalariServiceTest.getRoadMaintenanceWorks()` | Blocked by WAF |
 | `IsbikeServiceTest` | API host unreachable from CI runners |
+| `MetroIstanbulServiceTest.getStationBetweenTime()` | Upstream returns `Success:false` (server-side error) |
+| `MetroIstanbulServiceTest.getFaultTypes()` | Upstream `GetFailuresTypes` endpoint broken server-side; use `getFailureTypes()` |
+| `MetroIstanbulServiceTest.getTimeTable()` | Upstream returns `Success:false` (server-side error) |
 
 ### Running Tests
 
@@ -392,7 +400,7 @@ mvn test
 mvn test -Dtest=MetroIstanbulServiceTest
 
 # Single test method
-mvn test -Dtest=MetroIstanbulServiceTest#testGetStations
+mvn test -Dtest=MetroIstanbulServiceTest#getStations
 ```
 
 ### Test Helpers
@@ -411,11 +419,17 @@ protected void verifyResult(List<?> resultList) {
 
 ## Error Handling
 
-All HTTP and parse errors throw `IbbClientException`:
+All HTTP, network, and parse errors throw `IbbClientException`. Typed subclasses let you branch on the failure kind:
+
+- `IbbHttpException` — HTTP error status (4xx/5xx); exposes `getStatus()`, `getStatusText()`, `getBody()`, `getUrl()`
+- `IbbNetworkException` — connection/timeout failures
+- `IbbParseException` — response body could not be parsed as the expected type
 
 ```java
 try {
     List<MetroStation> stations = service.getStations();
+} catch (IbbHttpException e) {
+    System.err.println("HTTP " + e.getStatus() + " from " + e.getUrl() + ": " + e.getBody());
 } catch (IbbClientException e) {
     System.err.println("Error: " + e.getMessage());
 }
@@ -786,12 +800,17 @@ HalServiceResponse<ProductPrice> fiyatlar = halService.getProductPriceByDay(Loca
 
 ### Kaynak Serbest Bırakma
 
-```java
-import org.mesutormanli.ibbwsclient.service.base.BaseService;
+Her servis örneği kendi izole HTTP istemcisine sahiptir. Kaynakları `close()` ile serbest bırakın (ör. try-with-resources):
 
-// Uygulama kapatılırken Unirest kaynaklarını serbest bırakın
-BaseService.shutdown();
+```java
+import org.mesutormanli.ibbwsclient.service.MetroIstanbulService;
+
+try (MetroIstanbulService metro = new MetroIstanbulService()) {
+    List<MetroStation> stations = metro.getStations();
+}
 ```
+
+`BaseService.shutdown()` kullanımdan kaldırılmıştır (deprecated): süreç-geneli Unirest istemcisini kapatır ve aynı JVM'deki diğer Unirest kullanıcılarını bozabilir. Bir servis örneğini kapatmak diğer örnekleri etkilemez.
 
 ---
 
@@ -815,7 +834,7 @@ Tüm URL'ler `config/IbbClientConfig.java` dosyasında tanımlıdır.
 
 ## Testler
 
-Tüm testler **entegrasyon testleridir** ve canlı İBB API'lerine gerçek HTTP çağrıları yapar. Mock kullanılmaz.
+Testlerin çoğu canlı İBB API'lerine gerçek HTTP çağrıları yapan **entegrasyon testleridir**. Bunlara ek olarak, yerel bir HTTP sunucusuna karşı çalışan ve dış ağ erişimi gerektirmeyen offline birim testleri (`SoapUtilsTest`, `JsonUtilsTest`, `BaseServiceHttpHandlingTest`) vardır.
 
 ### Çalışan Testler
 
@@ -833,6 +852,9 @@ Tüm testler **entegrasyon testleridir** ve canlı İBB API'lerine gerçek HTTP 
 | `IettServiceTest` | Kimlik bilgileri gerektirir + API kullanılamıyor |
 | `YolBakimCalismalariServiceTest.getRoadMaintenanceWorks()` | WAF tarafından engellenir |
 | `IsbikeServiceTest` | API sunucusuna CI koşucularından erişilemiyor |
+| `MetroIstanbulServiceTest.getStationBetweenTime()` | Upstream `Success:false` döndürüyor (sunucu tarafı hata) |
+| `MetroIstanbulServiceTest.getFaultTypes()` | Upstream `GetFailuresTypes` ucu sunucu tarafında kırık; `getFailureTypes()` kullanın |
+| `MetroIstanbulServiceTest.getTimeTable()` | Upstream `Success:false` döndürüyor (sunucu tarafı hata) |
 
 ### Test Çalıştırma
 
@@ -844,7 +866,7 @@ mvn test
 mvn test -Dtest=MetroIstanbulServiceTest
 
 # Tek test metodu
-mvn test -Dtest=MetroIstanbulServiceTest#testGetStations
+mvn test -Dtest=MetroIstanbulServiceTest#getStations
 ```
 
 ### Test Yardımcıları
@@ -863,11 +885,17 @@ protected void verifyResult(List<?> resultList) {
 
 ## Hata Yönetimi
 
-Tüm HTTP ve parse hataları `IbbClientException` fırlatır:
+Tüm HTTP, ağ ve parse hataları `IbbClientException` fırlatır. Tipli alt sınıflar hatanın türüne göre dallanmanızı sağlar:
+
+- `IbbHttpException` — HTTP hata durumu (4xx/5xx); `getStatus()`, `getStatusText()`, `getBody()`, `getUrl()` sunar
+- `IbbNetworkException` — bağlantı/zaman aşımı hataları
+- `IbbParseException` — yanıt gövdesi beklenen tipe ayrıştırılamadı
 
 ```java
 try {
     List<MetroStation> stations = service.getStations();
+} catch (IbbHttpException e) {
+    System.err.println("HTTP " + e.getStatus() + " — " + e.getUrl() + ": " + e.getBody());
 } catch (IbbClientException e) {
     System.err.println("Hata: " + e.getMessage());
 }
