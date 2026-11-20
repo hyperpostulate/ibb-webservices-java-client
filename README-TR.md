@@ -64,10 +64,10 @@ mvn clean install
 ## Derleme ve Test
 
 ```bash
-mvn clean test                    # Tam derleme + testler
-mvn clean package                 # Derleme + test + paketleme
-mvn test -Dtest=MetroIstanbulServiceTest  # Tek test sınıfı
-mvn test -Dtest=IettServiceTest          # Tek test sınıfı
+mvn clean test                    # Yalnızca offline birim testleri (varsayılan)
+mvn clean package                 # Derleme + offline testler + paketleme (CI'ın çalıştırdığı)
+mvn clean package -Pintegration   # Canlı API entegrasyon testlerini de çalıştırır (Türkiye ağı gerekir)
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest  # Tek entegrasyon test sınıfı
 ```
 
 ---
@@ -81,7 +81,7 @@ GitHub Actions iş akışı (`.github/workflows/maven.yml`):
 - **JDK**: Amazon Corretto 25
 - **Komut**: `mvn -B package`
 
-Devre dışı bırakılan testler `@Disabled` kullanıldığı için otomatik olarak atlanır — CI onlarsız geçer.
+CI yalnızca offline birim testlerini çalıştırır. Canlı API entegrasyon testleri (`*ServiceTest`) varsayılan olarak hariç tutulur; çünkü İBB, Türkiye dışındaki/bulut IP aralıklarını güvenlik duvarıyla engelliyor ve GitHub koşucuları `*.ibb.gov.tr` adreslerine bağlanamıyor (bağlantı zaman aşımı). Bu testleri yerelde `-Pintegration` ile çalıştırabilirsiniz. Ayrıca `@Disabled` kullanan testler otomatik olarak atlanır.
 
 ---
 
@@ -375,7 +375,11 @@ Tüm URL'ler `config/IbbClientConfig.java` dosyasında tanımlıdır.
 
 Testlerin çoğu canlı İBB API'lerine gerçek HTTP çağrıları yapan **entegrasyon testleridir**. Bunlara ek olarak, yerel bir HTTP sunucusuna karşı çalışan ve dış ağ erişimi gerektirmeyen offline birim testleri (`SoapUtilsTest`, `JsonUtilsTest`, `BaseServiceHttpHandlingTest`) vardır.
 
+Entegrasyon testleri **isteğe bağlıdır** (`integration` Maven profili). Varsayılan derlemeden (ve dolayısıyla CI'dan) hariç tutulurlar; çünkü İBB `*.ibb.gov.tr` adreslerini yalnızca Türkiye IP aralıklarına açıyor ve GitHub koşucularından yapılan her istek bağlantı zaman aşımıyla sonuçlanıyor.
+
 ### Çalışan Testler
+
+Bu testler Türkiye'den yerel olarak geçer:
 
 - `MetroIstanbulServiceTest`
 - `IBBTrafikServiceTest`
@@ -398,14 +402,17 @@ Testlerin çoğu canlı İBB API'lerine gerçek HTTP çağrıları yapan **enteg
 ### Test Çalıştırma
 
 ```bash
-# Tüm testler
+# Offline birim testleri (varsayılan, ağ gerekmez)
 mvn test
 
-# Tek test sınıfı
-mvn test -Dtest=MetroIstanbulServiceTest
+# Offline birim testleri + canlı API entegrasyon testleri
+mvn test -Pintegration
 
-# Tek test metodu
-mvn test -Dtest=MetroIstanbulServiceTest#getStations
+# Tek entegrasyon test sınıfı
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest
+
+# Tek entegrasyon test metodu
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest#getStations
 ```
 
 ### Test Yardımcıları

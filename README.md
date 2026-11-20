@@ -64,10 +64,10 @@ mvn clean install
 ## Build & Test
 
 ```bash
-mvn clean test                    # Full build + tests
-mvn clean package                 # Build + tests + package
-mvn test -Dtest=MetroIstanbulServiceTest  # Single test class
-mvn test -Dtest=IettServiceTest          # Single test class
+mvn clean test                    # Offline unit tests only (default)
+mvn clean package                 # Build + offline tests + package (what CI runs)
+mvn clean package -Pintegration   # Also run live-API integration tests (needs Turkish network)
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest  # Single integration test class
 ```
 
 ---
@@ -81,7 +81,7 @@ GitHub Actions workflow (`.github/workflows/maven.yml`):
 - **JDK**: Amazon Corretto 25
 - **Command**: `mvn -B package`
 
-Disabled tests are skipped automatically since they use `@Disabled` — CI passes without them.
+CI runs the offline unit tests only. The live-API integration tests (`*ServiceTest`) are excluded by default because IBB firewalls non-Turkish/cloud IP ranges and GitHub-hosted runners cannot connect to `*.ibb.gov.tr` (connection timeouts). Run them locally with `-Pintegration`. Additionally disabled tests are skipped automatically since they use `@Disabled`.
 
 ---
 
@@ -375,7 +375,11 @@ All URLs are defined in `config/IbbClientConfig.java`.
 
 Most tests are **integration tests** that make real HTTP calls to live IBB APIs. In addition, offline unit tests (`SoapUtilsTest`, `JsonUtilsTest`, `BaseServiceHttpHandlingTest`) run against a local HTTP server and require no external network.
 
+Integration tests are **opt-in** via the `integration` Maven profile. They are excluded from the default build (and therefore from CI) because IBB only serves `*.ibb.gov.tr` to Turkish IP ranges; from GitHub-hosted runners every request ends in a connection timeout.
+
 ### Passing Tests
+
+These pass locally from a Turkish network:
 
 - `MetroIstanbulServiceTest`
 - `IBBTrafikServiceTest`
@@ -398,14 +402,17 @@ Most tests are **integration tests** that make real HTTP calls to live IBB APIs.
 ### Running Tests
 
 ```bash
-# All tests
+# Offline unit tests (default, no network)
 mvn test
 
-# Single test class
-mvn test -Dtest=MetroIstanbulServiceTest
+# Offline unit tests + live-API integration tests
+mvn test -Pintegration
 
-# Single test method
-mvn test -Dtest=MetroIstanbulServiceTest#getStations
+# Single integration test class
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest
+
+# Single integration test method
+mvn test -Pintegration -Dtest=MetroIstanbulServiceTest#getStations
 ```
 
 ### Test Helpers

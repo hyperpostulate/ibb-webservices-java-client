@@ -34,6 +34,14 @@
                 <version>3.2.5</version>
                 <configuration>
                     <skipTests>false</skipTests>
+                    <!--
+                        Integration tests (*ServiceTest) call live IBB APIs. IBB blocks
+                        non-Turkish/cloud IP ranges, so they cannot run on GitHub-hosted
+                        runners. They are opt-in via the "integration" profile.
+                    -->
+                    <excludes>
+                        <exclude>**/*ServiceTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>
@@ -69,5 +77,25 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <!--
+            Enables the live-API integration tests (*ServiceTest). Requires network
+            access to *.ibb.gov.tr from Turkey; run locally, not on GitHub Actions.
+        -->
+        <profile>
+            <id>integration</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <excludes combine.self="override"/>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
