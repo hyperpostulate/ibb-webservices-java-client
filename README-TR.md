@@ -1,11 +1,14 @@
-# ibb-webservices-java-client
+<h1 align="center">ibb-webservices-java-client</h1>
 
-[![Java CI](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml/badge.svg)](https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+<p align="center">
+  <a href="https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml"><img src="https://github.com/hyperpostulate/ibb-webservices-java-client/actions/workflows/maven.yml/badge.svg" alt="Java CI"></a>
+  <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
+</p>
 
-İstanbul Büyükşehir Belediyesi (İBB) açık veri API'leri için Java istemci kütüphanesi. Ana sınıf içermez — bağımlılık olarak tüketilir.
+<p align="center">İstanbul Büyükşehir Belediyesi (İBB) açık veri API'leri için Java istemci kütüphanesi.</p>
+<p align="center">Ana sınıf içermez — bağımlılık olarak tüketilir.</p>
 
-**English version: [README.md](README.md)**
+<p align="center">English version: <a href="README.md">README.md</a></p>
 
 ---
 
